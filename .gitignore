@@ -1,0 +1,12 @@
+# Archivos compilados de Java
+*.class
+build/
+dist/
+target/
+
+# Archivos de NetBeans
+nbproject/
+build.xml
+
+# Archivos de VS Code
+.vscode/
