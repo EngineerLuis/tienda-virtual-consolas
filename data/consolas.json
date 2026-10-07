@@ -1,0 +1,23 @@
+[
+    {
+        "id": 101,
+        "nombre": "Nintendo Switch OLED",
+        "marca": "Nintendo",
+        "precio": 349.99,
+        "stock": 15
+    },
+    {
+        "id": 102,
+        "nombre": "PlayStation 5",
+        "marca": "Sony",
+        "precio": 499.99,
+        "stock": 10
+    },
+    {
+        "id": 103,
+        "nombre": "Xbox Series X",
+        "marca": "Microsoft",
+        "precio": 499.99,
+        "stock": 8
+    }
+]
