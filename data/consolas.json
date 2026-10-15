@@ -4,20 +4,23 @@
         "nombre": "Nintendo Switch OLED",
         "marca": "Nintendo",
         "precio": 349.99,
-        "stock": 15
+        "stock": 15,
+        "plataforma": "Hibrida"
     },
     {
         "id": 102,
         "nombre": "PlayStation 5",
         "marca": "Sony",
         "precio": 499.99,
-        "stock": 10
+        "stock": 10,
+        "plataforma": "Sobremesa"
     },
     {
         "id": 103,
         "nombre": "Xbox Series X",
         "marca": "Microsoft",
         "precio": 499.99,
-        "stock": 8
+        "stock": 8,
+        "plataforma": "Sobremesa"
     }
 ]

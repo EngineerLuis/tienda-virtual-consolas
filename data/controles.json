@@ -1,0 +1,23 @@
+[
+    {
+        "id": 301,
+        "nombre": "Control DualSense",
+        "marca": "Sony",
+        "precio": 69.99,
+        "stock": 20
+    },
+    {
+        "id": 302,
+        "nombre": "Control Xbox Wireless",
+        "marca": "Microsoft",
+        "precio": 59.99,
+        "stock": 15
+    },
+    {
+        "id": 303,
+        "nombre": "Control Joy-Con",
+        "marca": "Nintendo",
+        "precio": 79.99,
+        "stock": 10
+    }
+]

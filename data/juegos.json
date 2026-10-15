@@ -1,0 +1,42 @@
+[
+    {
+        "id": 201,
+        "nombre": "The Legend of Zelda: Breath of the Wild",
+        "marca": "Nintendo",
+        "precio": 59.99,
+        "stock": 20,
+        "genero": "Aventura"
+    },
+    {
+        "id": 202,
+        "nombre": "Super Mario Odyssey",
+        "marca": "Nintendo",
+        "precio": 49.99,
+        "stock": 25,
+        "genero": "Plataformas"
+    },
+    {
+        "id": 203,
+        "nombre": "God of War",
+        "marca": "Sony",
+        "precio": 39.99,
+        "stock": 15,
+        "genero": "Acción"
+    },
+    {
+        "id": 204,
+        "nombre": "Spider-Man: Miles Morales",
+        "marca": "Sony",
+        "precio": 49.99,
+        "stock": 10,
+        "genero": "Acción"
+    },
+    {
+        "id": 205,
+        "nombre": "Halo Infinite",
+        "marca": "Microsoft",
+        "precio": 59.99,
+        "stock": 12,
+        "genero": "Shooter"
+    }
+]

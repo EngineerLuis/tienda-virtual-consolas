@@ -1,0 +1,23 @@
+[
+    {
+        "id": 401,
+        "nombre": "Audífonos Gaming",
+        "marca": "HyperX",
+        "precio": 79.99,
+        "stock": 30
+    },
+    {
+        "id": 402,
+        "nombre": "Logitech G502 Hero",
+        "marca": "Logitech",
+        "precio": 29.99,
+        "stock": 50
+    },
+    {
+        "id": 403,
+        "nombre": "Membresía Xbox Game Pass",
+        "marca": "Microsoft",
+        "precio": 99.99,
+        "stock": 20
+    }
+]
