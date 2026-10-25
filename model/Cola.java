@@ -26,6 +26,20 @@ public class Cola<T> {
     public Nodo<T> getFinalCola() {
         return finalCola;
     }
+    public T desencolar() {
+        if (estaVacia()) {
+            return null;
+        }
+        T dato = frente.getDato();
+        frente = frente.getSiguiente();
+        if (frente != null) {
+            frente.setAnterior(null);
+        } else {
+            finalCola = null; // La cola quedó vacía
+        }
+        tamano--;
+        return dato;
+    }
 
     public void agregarCola(T dato) {
         Nodo<T> nuevoNodo = new Nodo<>(dato);

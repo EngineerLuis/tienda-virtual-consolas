@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 public class Usuario {
 
     private String id;
@@ -7,6 +9,7 @@ public class Usuario {
     private String correo;
     private String contrasena;
     private String rol;
+    private List<Pedido> misPedidos = new ArrayList<>(); // Lista de pedidos del usuario
 
     public Usuario(String id, String nombre, String correo, String contrasena, String rol) {
         this.id = id;
@@ -57,4 +60,13 @@ public class Usuario {
         this.rol = rol;
     }
 
+    public void agregarPedido(Pedido pedido) {
+        this.misPedidos.add(pedido);
+    }
+
+    public List<Pedido> getMisPedidos() {
+        return misPedidos;
+    }
 }
+
+

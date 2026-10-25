@@ -40,9 +40,9 @@ public class ListaDobleEnlazada<T> {
         tamano++;
     }
 
-    public void eliminarLista(T dato) {
+    public boolean eliminarLista(T dato) {
         if (estaVacia()) {
-            return;
+            return false;
         }
 
         Nodo<T> actual = cabeza;
@@ -67,10 +67,11 @@ public class ListaDobleEnlazada<T> {
                     actual.getSiguiente().setAnterior(actual.getAnterior());
                 }
                 tamano--;
-                return;
+                return true;
             }
             actual = actual.getSiguiente();
         }
+        return false;
     }
 
     public T buscarLista(T dato) {

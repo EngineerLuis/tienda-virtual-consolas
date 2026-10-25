@@ -21,6 +21,20 @@ public class Pila<T> {
         return tope;
     }
 
+    // Método para sacar el elemento del tope (LIFO - Pop)
+    public T desapilar() {
+        if (estaVacia()) {
+            return null;
+        }
+        T dato = tope.getDato();
+        tope = tope.getSiguiente();
+        if (tope != null) {
+            tope.setAnterior(null);
+        }
+        tamano--;
+        return dato;
+    }
+
     public void agregarPila(T dato) {
         Nodo<T> nuevoNodo = new Nodo<>(dato);
         if (estaVacia()) {
