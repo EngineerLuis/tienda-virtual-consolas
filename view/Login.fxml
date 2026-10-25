@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+
+    <HBox prefHeight="700.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+     
+        <VBox alignment="CENTER_LEFT" prefWidth="550.0" style="-fx-background-color: #0d1117;" spacing="18.0">
+            <padding>
+                <Insets bottom="40.0" left="50.0" right="40.0" top="40.0" />
+            </padding>
+
+            
+            <Label text="nexo" textFill="#00d4ff">
+                <font>
+                    <Font name="System Bold" size="22.0" />
+                </font>
+            </Label>
+
+            
+            <Label text="TU PRÓXIMO NIVEL EMPIEZA AQUÍ" textFill="#8b949e" style="-fx-background-color: #21262d; -fx-padding: 4 10 4 10; -fx-background-radius: 4;">
+                <font>
+                    <Font size="11.0" />
+                </font>
+            </Label>
+
+           
+            <Label text="Conecta con lo que más&#10;te gusta." textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="System Bold" size="34.0" />
+                </font>
+            </Label>
+
+           
+            <Label text="Consolas, juegos y tecnología para tu próxima partida. Todo en un solo lugar." textFill="#8b949e" wrapText="true" maxWidth="420">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+
+            
+            <Region VBox.vgrow="ALWAYS" />
+
+            
+            <HBox spacing="25.0">
+                <Label text="✓  Envío gratis desde $50" textFill="#8b949e" />
+                <Label text="✓  Tecnología con garantía" textFill="#8b949e" />
+            </HBox>
+        </VBox>
+
+        
+        <VBox alignment="CENTER" prefWidth="550.0" spacing="16.0" style="-fx-background-color: #161b22;">
+            <padding>
+                <Insets bottom="50.0" left="70.0" right="70.0" top="50.0" />
+            </padding>
+
+            <Label text="BIENVENIDO A NEXO" textFill="#00d4ff">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Label>
+
+            <Label text="Tu cuenta, tu universo." textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+            </Label>
+
+            <Label text="Inicia sesión para guardar tus favoritos y continuar con tu compra." textFill="#8b949e" wrapText="true" />
+
+           
+            <VBox spacing="6.0">
+                <Label text="Correo electrónico" textFill="#c9d1d9" />
+                <TextField fx:id="txtEmail" promptText="mateo.ramirez@correo.com" prefHeight="44.0" 
+                           style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+            </VBox>
+
+            
+            <VBox spacing="6.0">
+                <Label text="Contraseña" textFill="#c9d1d9" />
+                <PasswordField fx:id="txtPassword" promptText="••••••••" prefHeight="44.0" 
+                               style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+            </VBox>
+
+          
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <CheckBox fx:id="chkRecordarme" text="Recordarme" textFill="#c9d1d9" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Hyperlink fx:id="linkOlvidar" text="¿Olvidaste tu contraseña?" textFill="#00d4ff" style="-fx-border-color: transparent;" />
+            </HBox>
+
+            
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin" 
+                    prefHeight="48.0" maxWidth="Infinity" 
+                    style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" 
+                    text="→   Iniciar Sesión" />
+
+        
+            <Label text="¿Todavía no eres parte de Nexo?" textFill="#8b949e" />
+
+         
+            <Button fx:id="btnCrearCuenta" mnemonicParsing="false" onAction="#onCrearCuenta" 
+                    prefHeight="44.0" maxWidth="Infinity" 
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-cursor: hand;" 
+                    text="Crear cuenta" />
+
+            
+            <Hyperlink fx:id="linkExplorar" text="Explorar la tienda →" textFill="#8b949e" style="-fx-border-color: transparent;" />
+        </VBox>
+    </HBox>
+</AnchorPane>
