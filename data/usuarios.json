@@ -1,16 +1,12 @@
 [
     {
-        "id": 1,
         "nombre": "Admin",
         "correo": "admin@tienda.com",
-        "password": "123",
-        "rol": "ADMINISTRADOR"
+        "password": "123"
     },
     {
-        "id": 2,
         "nombre": "Luis Pico",
         "correo": "luis@gmail.com",
-        "password": "456",
-        "rol": "CLIENTE"
+        "password": "456"
     }
 ]

@@ -17,7 +17,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import model.Usuario; 
 public class LoginController {
 
     @FXML private TextField txtEmail;
@@ -28,21 +28,38 @@ public class LoginController {
     @FXML private Button btnCrearCuenta;
     @FXML private Hyperlink linkExplorar;
 
+    //Instanciar controlador TiendaManager
+    private TiendaManager tiendaManager;
+
+    public LoginController() {
+        this.tiendaManager = new TiendaManager();
+    }
+
     @FXML
     private void onLogin(ActionEvent event) {
         String email = txtEmail.getText().trim();
         String password = txtPassword.getText().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campos incompletos");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor completa el correo y la contraseña.");
-            alert.showAndWait();
+            mostrarAlerta("Campos incompletos", "Por favor completa el correo y la contraseña.", Alert.AlertType.WARNING);
             return;
         }
+        
+        // Validación usando TiendaManager y los archivos JSON/nodos
+        boolean loginExitoso = tiendaManager.iniciarSesion(email, password);
 
-        cargarVista("/view/Catalogo.fxml");
+        if (loginExitoso) {
+            Usuario usuarioActual = tiendaManager.getUsuarioActual();
+            
+            // Verificamos si es Administrador o Cliente según el prototipo
+            if (usuarioActual.getCorreo().equalsIgnoreCase("admin@tienda.com")) {
+                cargarVista("/view/AdminInventario.fxml"); // Panel de administración del prototipo
+            } else {
+                cargarVista("/view/Catalogo.fxml"); // Tienda / Catálogo del cliente
+            }
+        } else {
+            mostrarAlerta("Credenciales incorrectas", "El correo o la contraseña no coinciden.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -58,6 +75,14 @@ public class LoginController {
     @FXML
     private void onExplorar(ActionEvent event) {
         cargarVista("/view/Catalogo.fxml");
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     private void cargarVista(String rutaFXML) {
