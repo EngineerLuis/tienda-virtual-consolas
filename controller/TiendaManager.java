@@ -302,4 +302,18 @@ public class TiendaManager {
     public Pila<String> getHistorialAccionesAdmin() {
         return historialAccionesAdmin;
     }
+
+    public boolean actualizarContrasena(String correo, String nuevaContrasena) {
+    Nodo<Usuario> aux = listaUsuarios.getCabeza();
+    while (aux != null) {
+        Usuario u = aux.getDato();
+        if (u.getCorreo().equalsIgnoreCase(correo)) {
+            u.setContrasena(nuevaContrasena); // Actualiza la contraseña en el objeto
+            guardarUsuariosEnDisco();         // Guarda los cambios en el JSON
+            return true;
+        }
+        aux = aux.getSiguiente();
+    }
+    return false;
+}
 }
