@@ -4,29 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 public class Usuario {
 
-    private String id;
     private String nombre;
     private String correo;
     private String contrasena;
-    private String rol;
     private List<Pedido> misPedidos = new ArrayList<>(); // Lista de pedidos del usuario
 
-    public Usuario(String id, String nombre, String correo, String contrasena, String rol) {
-        this.id = id;
+    public Usuario(String nombre, String correo, String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.rol = rol;
     }
 
     // Getters and Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -51,15 +40,7 @@ public class Usuario {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
+    
     public void agregarPedido(Pedido pedido) {
         this.misPedidos.add(pedido);
     }

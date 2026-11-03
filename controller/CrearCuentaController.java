@@ -72,9 +72,29 @@ public class CrearCuentaController {
 
         if (registradoExitoso) {
             mostrarAlerta("¡Cuenta creada!", "Tu cuenta ha sido registrada con éxito. Ya puedes iniciar sesión.", Alert.AlertType.INFORMATION);
-            cargarVista("/view/Login.fxml", event);
+            cargarVista("/view/Login.fxml");
         } else {
             mostrarAlerta("Error de registro", "El correo electrónico ya se encuentra registrado en el sistema.", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    
+    private void cargarVista(String rutaFXML) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnCrearCuenta.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
