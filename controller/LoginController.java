@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,18 +16,26 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Usuario; 
+import model.Usuario;
+
 public class LoginController {
 
-    @FXML private TextField txtEmail;
-    @FXML private PasswordField txtPassword;
-    @FXML private CheckBox chkRecordarme;
-    @FXML private Hyperlink linkOlvidar;
-    @FXML private Button btnLogin;
-    @FXML private Button btnCrearCuenta;
-    @FXML private Hyperlink linkExplorar;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private CheckBox chkRecordarme;
+    @FXML
+    private Hyperlink linkOlvidar;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Button btnCrearCuenta;
+    @FXML
+    private Hyperlink linkExplorar;
 
-    //Instanciar controlador TiendaManager
+    // Instanciar controlador TiendaManager
     private TiendaManager tiendaManager;
 
     public LoginController() {
@@ -41,16 +48,17 @@ public class LoginController {
         String password = txtPassword.getText().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            mostrarAlerta("Campos incompletos", "Por favor completa el correo y la contraseña.", Alert.AlertType.WARNING);
+            mostrarAlerta("Campos incompletos", "Por favor completa el correo y la contraseña.",
+                    Alert.AlertType.WARNING);
             return;
         }
-        
+
         // Validación usando TiendaManager y los archivos JSON/nodos
         boolean loginExitoso = tiendaManager.iniciarSesion(email, password);
 
         if (loginExitoso) {
             Usuario usuarioActual = tiendaManager.getUsuarioActual();
-            
+
             // Verificamos si es Administrador o Cliente según el prototipo
             if (usuarioActual.getCorreo().equalsIgnoreCase("admin@tienda.com")) {
                 cargarVista("/view/AdminInventario.fxml"); // Panel de administración del prototipo
@@ -87,13 +95,22 @@ public class LoginController {
 
     private void cargarVista(String rutaFXML) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            // Verificamos que el recurso exista antes de cargarlo
+            var resource = getClass().getResource(rutaFXML);
+            if (resource == null) {
+                mostrarAlerta("Error de ruta", "No se encontró el archivo FXML en: " + rutaFXML, Alert.AlertType.ERROR);
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            mostrarAlerta("Error de navegación",
+                    "No se pudo cargar la vista: " + rutaFXML + "\nDetalle: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 }

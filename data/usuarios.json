@@ -1,12 +1,18 @@
 [
-    {
-        "nombre": "Admin",
-        "correo": "admin@tienda.com",
-        "password": "123"
-    },
-    {
-        "nombre": "Luis Pico",
-        "correo": "luis@gmail.com",
-        "password": "456"
-    }
+  {
+    "nombre": "Admin",
+    "correo": "admin@tienda.com",
+    "contrasena": "123"
+  },
+  {
+    "nombre": "Luis Pico",
+    "correo": "luis@gmail.com",
+    "contrasena": "789"
+  },
+  {
+    "nombre": "Aly Culchac",
+    "correo": "aly@gmail.com",
+    "contrasena": "456",
+    "misPedidos": []
+  }
 ]
