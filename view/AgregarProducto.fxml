@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarProductoController">
+
+    <!-- MENÚ LATERAL -->
+    <left>
+        <VBox prefWidth="220.0" spacing="8.0" style="-fx-background-color: #161b22; -fx-padding: 20 15 20 15;">
+            <Label text="nexo" textFill="#00d4ff">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            
+            <Region prefHeight="20.0" />
+            
+            <Button fx:id="btnInventario" text="Inventario" maxWidth="Infinity" onAction="#onInventario"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-background-radius: 6; -fx-cursor: hand;" />
+            
+            <Button fx:id="btnVentas" text="Ventas" maxWidth="Infinity" onAction="#onVentas"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-background-radius: 6; -fx-cursor: hand;" />
+            
+            <Button fx:id="btnClientes" text="Clientes" maxWidth="Infinity" onAction="#onClientes"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-background-radius: 6; -fx-cursor: hand;" />
+            
+            <Button fx:id="btnConfiguracion" text="Configuración" maxWidth="Infinity" onAction="#onConfiguracion"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-background-radius: 6; -fx-cursor: hand;" />
+            
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <Button fx:id="btnVolverTienda" text="Volver a la tienda" maxWidth="Infinity" onAction="#onVolverTienda"
+                    style="-fx-background-color: transparent; -fx-text-fill: #8b949e; -fx-background-radius: 6; -fx-cursor: hand;" />
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #0d1117; -fx-background: #0d1117;">
+            <VBox spacing="20.0" style="-fx-padding: 25;">
+                
+                <Label text="Agregar Nuevo Producto" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+
+                <!-- Información general -->
+                <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label text="Información general" textFill="#00d4ff">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+
+                    <HBox spacing="15.0">
+                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                            <Label text="Nombre del producto *" textFill="#c9d1d9" />
+                            <TextField fx:id="txtNombre" promptText="Ej: DualSense - Blanco" prefHeight="40.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                        
+                        <VBox spacing="6.0" prefWidth="180">
+                            <Label text="Categoría *" textFill="#c9d1d9" />
+                            <ComboBox fx:id="cmbCategoria" promptText="Seleccionar" prefHeight="40.0" maxWidth="Infinity" />
+                        </VBox>
+                    </HBox>
+
+                    <VBox spacing="6.0">
+                        <Label text="Descripción" textFill="#c9d1d9" />
+                        <TextArea fx:id="txtDescripcion" promptText="Descripción del producto..." prefHeight="80.0" wrapText="true"
+                                  style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                    </VBox>
+
+                    <HBox spacing="15.0">
+                        <VBox spacing="6.0" prefWidth="150">
+                            <Label text="Precio (USD) *" textFill="#c9d1d9" />
+                            <TextField fx:id="txtPrecio" promptText="0.00" prefHeight="40.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                        
+                        <VBox spacing="6.0" prefWidth="150">
+                            <Label text="Stock disponible *" textFill="#c9d1d9" />
+                            <TextField fx:id="txtStock" promptText="0" prefHeight="40.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Imagen del producto -->
+                <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label text="Imagen del producto" textFill="#00d4ff">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+                    
+                    <HBox spacing="15.0" alignment="CENTER_LEFT">
+                        <Label fx:id="lblNombreImagen" text="Ninguna imagen seleccionada" textFill="#8b949e" />
+                        <Button fx:id="btnSeleccionarImagen" text="Seleccionar imagen" onAction="#onSeleccionarImagen"
+                                style="-fx-background-color: #21262d; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" />
+                    </HBox>
+                </VBox>
+
+                <!-- Especificaciones técnicas -->
+                <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label text="Especificaciones técnicas" textFill="#00d4ff">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+
+                    <HBox spacing="15.0">
+                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                            <Label text="Procesador" textFill="#c9d1d9" />
+                            <TextField fx:id="txtProcesador" prefHeight="38.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                            <Label text="Almacenamiento" textFill="#c9d1d9" />
+                            <TextField fx:id="txtAlmacenamiento" prefHeight="38.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="15.0">
+                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                            <Label text="Resolución" textFill="#c9d1d9" />
+                            <TextField fx:id="txtResolucion" prefHeight="38.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                            <Label text="Conectividad" textFill="#c9d1d9" />
+                            <TextField fx:id="txtConectividad" prefHeight="38.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Botones -->
+                <HBox spacing="15.0" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnCancelar" text="Cancelar" onAction="#onCancelar"
+                            style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
+                    
+                    <Button fx:id="btnGuardar" text="Guardar producto" onAction="#onGuardar"
+                            style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 10 20;" />
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
