@@ -4,16 +4,17 @@ public class Producto {
     
     private String id;
     private String nombre;
-    private String marca;
+    private String categoria;
     private float precio;
     private int stock;
 
     // Constructor
-    public Producto(String id, String nombre, String marca, float precio, int stock) {
+    public Producto(String id, String nombre, String categoria,  int stock, float precio) {
         this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
+        this.categoria = categoria;
         this.stock = stock;
+        this.precio = precio;
     }
 
     // Getters and Setters
@@ -33,12 +34,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public float getPrecio() {

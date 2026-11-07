@@ -7,7 +7,8 @@
   {
     "nombre": "Luis Pico",
     "correo": "luis@gmail.com",
-    "contrasena": "789"
+    "contrasena": "789",
+    "misPedidos": []
   },
   {
     "nombre": "Aly Culchac",

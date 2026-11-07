@@ -2,8 +2,8 @@ package model;
 
 public class Accesorios extends Producto {
 
-    public Accesorios(String id, String nombre, String marca, float precio, int stock) {
-        super(id, nombre, marca, precio, stock);
+    public Accesorios(String id, String nombre, String categoria, int stock, float precio) {
+        super(id, nombre, categoria, stock, precio);
     }
     
 }

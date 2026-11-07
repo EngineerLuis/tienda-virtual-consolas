@@ -61,7 +61,7 @@ public class LoginController {
 
             // Verificamos si es Administrador o Cliente según el prototipo
             if (usuarioActual.getCorreo().equalsIgnoreCase("admin@tienda.com")) {
-                cargarVista("/view/AdminInventario.fxml"); // Panel de administración del prototipo
+                cargarVista("/view/Inventario.fxml"); // Panel de administración del prototipo
             } else {
                 cargarVista("/view/Catalogo.fxml"); // Tienda / Catálogo del cliente
             }

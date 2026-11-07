@@ -259,6 +259,36 @@ public class TiendaManager {
         return eliminado;
     }
 
+    public void agregarControl(Control c){
+        listaControles.agregarLista(c);
+        guardarControlesEnDisco();
+        historialAccionesAdmin.agregarPila("Se agrego el control: " + c.getNombre());
+    }
+
+    public boolean eliminarControl(Control c){
+        boolean eliminado = listaControles.eliminarLista(c);
+        if (eliminado) {
+            guardarControlesEnDisco();
+            historialAccionesAdmin.agregarPila("Se eliminó el control: " + c.getNombre());
+        }
+        return eliminado;
+    }
+
+    public void agregarAccesorio(Accesorios a){
+        listaAccesorios.agregarLista(a);
+        guardarAccesoriosEnDisco();
+        historialAccionesAdmin.agregarPila("Se agrego el accesorio: " + a.getNombre());
+    }
+
+    public boolean eliminarAccesorio(Accesorios a){
+        boolean eliminado = listaAccesorios.eliminarLista(a);
+        if (eliminado) {
+            guardarAccesoriosEnDisco();
+            historialAccionesAdmin.agregarPila("Se eliminó el accesorio: " + a.getNombre());
+        }
+        return eliminado;
+    } 
+
     public String deshacerAccionAdmin() {
         if (!historialAccionesAdmin.estaVacia()) {
             return historialAccionesAdmin.desapilar();
