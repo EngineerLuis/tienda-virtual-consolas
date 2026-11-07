@@ -189,7 +189,8 @@ public class TiendaManager {
 
         //Crear objeto Pedido para el historial (visto por Admin y Cliente)
         String idPedido = "DEM-" + (100 + historialPedidos.getTamano() + 1);
-        Pedido nuevoPedido = new Pedido(idPedido, usuarioActual != null ? usuarioActual.getNombre() : "Invitado",
+        String fecha = java.time.LocalDate.now().toString();
+        Pedido nuevoPedido = new Pedido(idPedido, fecha, usuarioActual != null ? usuarioActual.getNombre() : "Invitado",
                 productosPedido, total, metodoPago, direccionEnvio);
 
         historialPedidos.agregarLista(nuevoPedido);

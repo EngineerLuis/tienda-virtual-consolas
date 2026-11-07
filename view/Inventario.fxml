@@ -48,7 +48,7 @@
             <HBox spacing="15.0">
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="180">
                     <Label text="Ingresos de demostración" textFill="#8b949e" />
-                    <Label fx:id="lblIngresos" text="" textFill="WHITE" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+                    <Label fx:id="lblIngresos" text="0" textFill="WHITE" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
                 </VBox>
                 
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="180">
@@ -58,7 +58,7 @@
                 
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="180">
                     <Label text="Ticket promedio" textFill="#8b949e" />
-                    <Label fx:id="lblTicket" text="" textFill="WHITE" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+                    <Label fx:id="lblTicket" text="0" textFill="WHITE" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
                 </VBox>
                 
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="180">

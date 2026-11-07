@@ -5,6 +5,8 @@
 package controller;
 
 import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.*;
 
 public class VentasController {
 
@@ -29,17 +33,73 @@ public class VentasController {
     @FXML private Label lblUnidades;
     @FXML private Label lblTicket;
 
-    @FXML private TableView<?> tablaVentas;
-    @FXML private TableColumn<?, ?> colPedido;
-    @FXML private TableColumn<?, ?> colFecha;
-    @FXML private TableColumn<?, ?> colCliente;
-    @FXML private TableColumn<?, ?> colItems;
-    @FXML private TableColumn<?, ?> colTotal;
-    @FXML private TableColumn<?, ?> colEstado;
+    @FXML private TableView<Pedido> tablaVentas;
+    @FXML private TableColumn<Pedido, String> colPedido;
+    @FXML private TableColumn<Pedido, String> colFecha;
+    @FXML private TableColumn<Pedido, String> colCliente;
+    @FXML private TableColumn<Pedido, Integer> colItems;
+    @FXML private TableColumn<Pedido, Float> colTotal;
+    @FXML private TableColumn<Pedido, String> colMetodoPago;
+    @FXML private TableColumn<Pedido, String> colDireccionEnvio;
+
+    private TiendaManager tiendaManager;
+
+    @FXML
+    public void initialize() {
+        tiendaManager = new TiendaManager();
+
+        // 1. Configurar las columnas con los atributos de la clase Pedido
+        colPedido.setCellValueFactory(new PropertyValueFactory<>("idPedido"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
+        colItems.setCellValueFactory(new PropertyValueFactory<>("cantidadItems")); 
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colMetodoPago.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));
+        colDireccionEnvio.setCellValueFactory(new PropertyValueFactory<>("direccionEnvio"));
+
+        // 2. Cargar los datos reales desde el historial de pedidos
+        cargarDatosVentas();
+    }
+
+    private void cargarDatosVentas() {
+        ObservableList<Pedido> listaPedidos = FXCollections.observableArrayList();
+        double ingresosTotales = 0;
+        int unidadesVendidas = 0;
+
+        // Recorrer el historial de pedidos usando la estructura de lista doblemente enlazada
+        ListaDobleEnlazada<Pedido> historial = tiendaManager.getHistorialPedidos();
+        Nodo<Pedido> aux = historial.getCabeza();
+        
+        while (aux != null) {
+            Pedido pedido = aux.getDato();
+            listaPedidos.add(pedido);
+            
+            ingresosTotales += pedido.getTotal();
+            if (pedido.getProductos() != null) {
+                unidadesVendidas += pedido.getProductos().size();
+            }
+            
+            aux = aux.getSiguiente();
+        }
+
+        tablaVentas.setItems(listaPedidos);
+        
+        int totalPedidos = historial.getTamano();
+        lblPedidos.setText(String.valueOf(totalPedidos));
+        lblIngresos.setText(String.format("$%.2f", ingresosTotales));
+        lblUnidades.setText(String.valueOf(unidadesVendidas));
+
+        if (totalPedidos > 0) {
+            double ticketPromedio = ingresosTotales / totalPedidos;
+            lblTicket.setText(String.format("$%.2f", ticketPromedio));
+        } else {
+            lblTicket.setText("$0.00");
+        }
+    }
 
     @FXML
     private void onInventario(ActionEvent event) {
-        cargarVista("/view/Inventario.fxml");
+        cargarVista("/view/Inventario.fxml", event);
     }
 
     @FXML
@@ -49,24 +109,24 @@ public class VentasController {
 
     @FXML
     private void onClientes(ActionEvent event) {
-        cargarVista("/view/Clientes.fxml");
+        cargarVista("/view/Clientes.fxml", event);
     }
 
     @FXML
     private void onConfiguracion(ActionEvent event) {
-        cargarVista("/view/Configuracion.fxml");
+        cargarVista("/view/Configuracion.fxml", event);
     }
 
     @FXML
     private void onVolverTienda(ActionEvent event) {
-        cargarVista("/view/Catalogo.fxml");
+        cargarVista("/view/Catalogo.fxml", event);
     }
 
-    private void cargarVista(String rutaFXML) {
+    private void cargarVista(String rutaFXML, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent root = loader.load();
-            Stage stage = (Stage) btnVentas.getScene().getWindow();
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

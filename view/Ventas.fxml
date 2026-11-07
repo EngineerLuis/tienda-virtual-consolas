@@ -51,7 +51,7 @@
             <HBox spacing="15.0">
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="200">
                     <Label text="Ingresos de demostración" textFill="#8b949e" />
-                    <Label fx:id="lblIngresos" text="$2,368.00" textFill="WHITE">
+                    <Label fx:id="lblIngresos" text="2,368.00" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="18.0" />
                         </font>
@@ -78,7 +78,7 @@
                 
                 <VBox spacing="4.0" style="-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15;" prefWidth="200">
                     <Label text="Ticket promedio" textFill="#8b949e" />
-                    <Label fx:id="lblTicket" text="$296.00" textFill="WHITE">
+                    <Label fx:id="lblTicket" text="296.00" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="18.0" />
                         </font>
@@ -94,7 +94,8 @@
                     <TableColumn fx:id="colCliente" text="Cliente" prefWidth="180" />
                     <TableColumn fx:id="colItems" text="Ítems" prefWidth="70" />
                     <TableColumn fx:id="colTotal" text="Total" prefWidth="100" />
-                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="120" />
+                    <TableColumn fx:id="colMetodoPago" text="Metodo de pago" prefWidth="120" />
+                    <TableColumn fx:id="colDireccionEnvio" text="Direccion" prefWidth="120" />
                 </columns>
             </TableView>
 
