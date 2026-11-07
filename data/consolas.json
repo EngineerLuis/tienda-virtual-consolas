@@ -2,25 +2,37 @@
     {
         "id": 101,
         "nombre": "Nintendo Switch OLED",
-        "marca": "Nintendo",
+        "categoria": "Consolas",
+        "stock": 8,
         "precio": 349.99,
-        "stock": 15,
-        "plataforma": "Hibrida"
+        "descripcion": "La consola Nintendo Switch OLED ofrece una experiencia de juego versátil con una pantalla OLED de 7 pulgadas, audio mejorado y almacenamiento ampliable.",
+        "rutaImagen": "imagenes/consolas/nintendo_switch_oled.jpg",
+        "procesador": "NVIDIA Tegra X1",
+        "almacenamiento": "64 GB",
+        "resolucion": "1280x720"
     },
     {
         "id": 102,
         "nombre": "PlayStation 5",
-        "marca": "Sony",
-        "precio": 499.99,
+        "categoria": "Consolas",
         "stock": 10,
-        "plataforma": "Sobremesa"
+        "precio": 499.99,
+        "descripcion": "La PlayStation 5 es la consola de próxima generación de Sony, con gráficos impresionantes, tiempos de carga ultrarrápidos y un nuevo controlador DualSense.",
+        "rutaImagen": "imagenes/consolas/playstation_5.jpg",
+        "procesador": "AMD Zen 2",
+        "almacenamiento": "825 GB",
+        "resolucion": "3840x2160"
     },
     {
         "id": 103,
         "nombre": "Xbox Series X",
-        "marca": "Microsoft",
+        "categoria": "Consolas",
+        "stock": 10,
         "precio": 499.99,
-        "stock": 8,
-        "plataforma": "Sobremesa"
+        "descripcion": "La Xbox Series X es la consola más potente de Microsoft, con gráficos 4K, tiempos de carga rápidos y compatibilidad con juegos de generaciones anteriores.",
+        "rutaImagen": "imagenes/consolas/xbox_series_x.jpg",
+        "procesador": "AMD Zen 2",
+        "almacenamiento": "1000 GB",
+        "resolucion": "3840x2160"
     }
 ]

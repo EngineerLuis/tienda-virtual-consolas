@@ -2,22 +2,31 @@
     {
         "id": 301,
         "nombre": "Control DualSense",
-        "marca": "Sony",
+        "categoria": "Controles",
+        "stock": 10,
         "precio": 69.99,
-        "stock": 20
+        "descripcion": "Control inalámbrico para PlayStation 5",
+        "rutaImagen": "dualsense.jpg",
+        "conectividad": "Inalámbrico"
     },
     {
         "id": 302,
         "nombre": "Control Xbox Wireless",
-        "marca": "Microsoft",
+        "categoria": "Controles",
+        "stock": 12,
         "precio": 59.99,
-        "stock": 15
+        "descripcion": "Control inalámbrico para Xbox Series X/S",
+        "rutaImagen": "xbox_wireless.jpg",
+        "conectividad": "Inalámbrico"
     },
     {
         "id": 303,
         "nombre": "Control Joy-Con",
-        "marca": "Nintendo",
+        "categoria": "Controles",
+        "stock": 12,
         "precio": 79.99,
-        "stock": 10
+        "descripcion": "Control inalámbrico para Nintendo Switch",
+        "rutaImagen": "joycon.jpg",
+        "conectividad": "Inalámbrico"
     }
 ]

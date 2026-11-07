@@ -48,6 +48,11 @@ public class Usuario {
     public List<Pedido> getMisPedidos() {
         return misPedidos;
     }
+
+    public int getCantidadPedidos() {
+    return misPedidos != null ? misPedidos.size() : 0;
+}
+
 }
 
 

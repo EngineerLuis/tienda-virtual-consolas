@@ -5,16 +5,20 @@ public class Producto {
     private String id;
     private String nombre;
     private String categoria;
-    private float precio;
     private int stock;
+    private float precio;
+    private String descripcion;
+    private String rutaImagen;
 
     // Constructor
-    public Producto(String id, String nombre, String categoria,  int stock, float precio) {
+    public Producto(String id, String nombre, String categoria,  int stock, float precio, String descripcion, String rutaImagen) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
         this.stock = stock;
         this.precio = precio;
+        this.descripcion = descripcion;
+        this.rutaImagen = rutaImagen;
     }
 
     // Getters and Setters
@@ -56,5 +60,21 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
 }

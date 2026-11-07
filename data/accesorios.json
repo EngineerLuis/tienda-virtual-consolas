@@ -2,22 +2,31 @@
     {
         "id": 401,
         "nombre": "Audífonos Gaming",
-        "marca": "HyperX",
+        "categoria": "Accesorios",
+        "stock": 30,
         "precio": 79.99,
-        "stock": 30
+        "descripcion": "Audífonos de juego con sonido envolvente",
+        "rutaImagen": "audifonos_gaming.jpg",
+        "conectividad": "Inalámbrico"
     },
     {
         "id": 402,
         "nombre": "Logitech G502 Hero",
-        "marca": "Logitech",
+        "categoria": "Accesorios",
+        "stock": 50,
         "precio": 29.99,
-        "stock": 50
+        "descripcion": "Ratón para juegos con sensor HERO 25K",
+        "rutaImagen": "logitech_g502_hero.jpg",
+        "conectividad": "Alámbrico"
     },
     {
         "id": 403,
         "nombre": "Membresía Xbox Game Pass",
-        "marca": "Microsoft",
+        "categoria": "Accesorios",
+        "stock": 20,
         "precio": 99.99,
-        "stock": 20
+        "descripcion": "Acceso a una amplia biblioteca de juegos",
+        "rutaImagen": "xbox_game_pass.jpg",
+        "conectividad": "Inalámbrico"
     }
 ]

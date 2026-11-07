@@ -289,6 +289,82 @@ public class TiendaManager {
         return eliminado;
     } 
 
+    public boolean actualizarProducto(Producto productoActualizado) {
+        if (productoActualizado == null || productoActualizado.getId() == null) {
+            return false;
+        }
+
+        if (productoActualizado instanceof Consola) {
+            Nodo<Consola> aux = listaConsolas.getCabeza();
+            while (aux != null) {
+                if (aux.getDato().getId().equals(productoActualizado.getId())) {
+                    Consola consola = aux.getDato();
+                    Consola actualizada = (Consola) productoActualizado;
+                    copiarDatosProducto(consola, actualizada);
+                    consola.setProcesador(actualizada.getProcesador());
+                    consola.setAlmacenamiento(actualizada.getAlmacenamiento());
+                    consola.setResolucion(actualizada.getResolucion());
+                    guardarConsolasEnDisco();
+                    historialAccionesAdmin.agregarPila("Se actualizó la consola: " + consola.getNombre());
+                    return true;
+                }
+                aux = aux.getSiguiente();
+            }
+        } else if (productoActualizado instanceof Juego) {
+            Nodo<Juego> aux = listaJuegos.getCabeza();
+            while (aux != null) {
+                if (aux.getDato().getId().equals(productoActualizado.getId())) {
+                    Juego juego = aux.getDato();
+                    Juego actualizado = (Juego) productoActualizado;
+                    copiarDatosProducto(juego, actualizado);
+                    juego.setResolucion(actualizado.getResolucion());
+                    guardarJuegosEnDisco();
+                    historialAccionesAdmin.agregarPila("Se actualizó el juego: " + juego.getNombre());
+                    return true;
+                }
+                aux = aux.getSiguiente();
+            }
+        } else if (productoActualizado instanceof Control) {
+            Nodo<Control> aux = listaControles.getCabeza();
+            while (aux != null) {
+                if (aux.getDato().getId().equals(productoActualizado.getId())) {
+                    Control control = aux.getDato();
+                    Control actualizado = (Control) productoActualizado;
+                    copiarDatosProducto(control, actualizado);
+                    control.setConectividad(actualizado.getConectividad());
+                    guardarControlesEnDisco();
+                    historialAccionesAdmin.agregarPila("Se actualizó el control: " + control.getNombre());
+                    return true;
+                }
+                aux = aux.getSiguiente();
+            }
+        } else if (productoActualizado instanceof Accesorios) {
+            Nodo<Accesorios> aux = listaAccesorios.getCabeza();
+            while (aux != null) {
+                if (aux.getDato().getId().equals(productoActualizado.getId())) {
+                    Accesorios accesorio = aux.getDato();
+                    Accesorios actualizado = (Accesorios) productoActualizado;
+                    copiarDatosProducto(accesorio, actualizado);
+                    accesorio.setConectividad(actualizado.getConectividad());
+                    guardarAccesoriosEnDisco();
+                    historialAccionesAdmin.agregarPila("Se actualizó el accesorio: " + accesorio.getNombre());
+                    return true;
+                }
+                aux = aux.getSiguiente();
+            }
+        }
+        return false;
+    }
+
+    private void copiarDatosProducto(Producto destino, Producto origen) {
+        destino.setNombre(origen.getNombre());
+        destino.setCategoria(origen.getCategoria());
+        destino.setStock(origen.getStock());
+        destino.setPrecio(origen.getPrecio());
+        destino.setDescripcion(origen.getDescripcion());
+        destino.setRutaImagen(origen.getRutaImagen());
+    }
+
     public String deshacerAccionAdmin() {
         if (!historialAccionesAdmin.estaVacia()) {
             return historialAccionesAdmin.desapilar();

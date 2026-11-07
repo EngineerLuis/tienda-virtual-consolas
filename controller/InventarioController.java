@@ -22,25 +22,42 @@ import model.*;
 
 public class InventarioController {
 
-    @FXML private Button btnInventario;
-    @FXML private Button btnVentas;
-    @FXML private Button btnClientes;
-    @FXML private Button btnConfiguracion;
-    @FXML private Button btnVolverTienda;
-    @FXML private Button btnAgregarProducto;
+    @FXML
+    private Button btnInventario;
+    @FXML
+    private Button btnVentas;
+    @FXML
+    private Button btnClientes;
+    @FXML
+    private Button btnConfiguracion;
+    @FXML
+    private Button btnVolverTienda;
+    @FXML
+    private Button btnAgregarProducto;
 
-    @FXML private Label lblIngresos;
-    @FXML private Label lblPedidos;
-    @FXML private Label lblTicket;
-    @FXML private Label lblProductos;
+    @FXML
+    private Label lblIngresos;
+    @FXML
+    private Label lblPedidos;
+    @FXML
+    private Label lblTicket;
+    @FXML
+    private Label lblProductos;
 
-    @FXML private TableView<Producto> tablaProductos;
-    @FXML private TableColumn<Producto, String> colId;
-    @FXML private TableColumn<Producto, String> colProducto;
-    @FXML private TableColumn<Producto, String> colCategoria;
-    @FXML private TableColumn<Producto, Integer> colStock;
-    @FXML private TableColumn<Producto, Float> colPrecio;
-    @FXML private TableColumn<Producto, Void> colAcciones;
+    @FXML
+    private TableView<Producto> tablaProductos;
+    @FXML
+    private TableColumn<Producto, String> colId;
+    @FXML
+    private TableColumn<Producto, String> colProducto;
+    @FXML
+    private TableColumn<Producto, String> colCategoria;
+    @FXML
+    private TableColumn<Producto, Integer> colStock;
+    @FXML
+    private TableColumn<Producto, Float> colPrecio;
+    @FXML
+    private TableColumn<Producto, Void> colAcciones;
 
     private TiendaManager tiendaManager;
 
@@ -103,10 +120,19 @@ public class InventarioController {
 
     private void configurarBotonAcciones() {
         colAcciones.setCellFactory(param -> new TableCell<>() {
+            private final Button btnEditar = new Button("Editar");
             private final Button btnEliminar = new Button("Eliminar");
 
             {
-                btnEliminar.setStyle("-fx-background-color: #da3633; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 4 8;");
+                btnEditar.setStyle(
+                        "-fx-background-color: #238636; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 4 8;");
+                btnEditar.setOnAction(event -> {
+                    Producto producto = getTableView().getItems().get(getIndex());
+                    abrirFormularioEdicion(producto, event);
+                });
+
+                btnEliminar.setStyle(
+                        "-fx-background-color: #da3633; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 4 8;");
                 btnEliminar.setOnAction(event -> {
                     Producto producto = getTableView().getItems().get(getIndex());
 
@@ -136,11 +162,35 @@ public class InventarioController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    HBox container = new HBox(10, btnEliminar);
+                    HBox container = new HBox(10, btnEditar, btnEliminar);
                     setGraphic(container);
                 }
             }
         });
+    }
+
+    private void abrirFormularioEdicion(Producto producto, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AgregarProducto.fxml"));
+            Parent root = loader.load();
+            AgregarProductoController controller = loader.getController();
+            controller.cargarProductoParaEditar(producto);
+
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "No se pudo abrir el formulario",
+                    "Ocurrió un error al cargar el formulario de edición.");
+        }
+    }
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     @FXML
