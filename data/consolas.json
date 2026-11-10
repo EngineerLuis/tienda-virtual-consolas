@@ -1,0 +1,14 @@
+[
+  {
+    "procesador": "Turbo",
+    "almacenamiento": "Envolvente",
+    "resolucion": "7 velocidades",
+    "id": "PROD-6181",
+    "nombre": "Polla Negra",
+    "categoria": "Consolas",
+    "stock": 67,
+    "precio": 666.0,
+    "descripcion": "Grande",
+    "rutaImagen": "IMG_780cb272-2eff-49c0-a03d-a4ff624df934.jpg"
+  }
+]

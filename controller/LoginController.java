@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,16 +16,31 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Usuario;
 
 public class LoginController {
 
-    @FXML private TextField txtEmail;
-    @FXML private PasswordField txtPassword;
-    @FXML private CheckBox chkRecordarme;
-    @FXML private Hyperlink linkOlvidar;
-    @FXML private Button btnLogin;
-    @FXML private Button btnCrearCuenta;
-    @FXML private Hyperlink linkExplorar;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private CheckBox chkRecordarme;
+    @FXML
+    private Hyperlink linkOlvidar;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Button btnCrearCuenta;
+    @FXML
+    private Hyperlink linkExplorar;
+
+    // Instanciar controlador TiendaManager
+    private TiendaManager tiendaManager;
+
+    public LoginController() {
+        this.tiendaManager = new TiendaManager();
+    }
 
     @FXML
     private void onLogin(ActionEvent event) {
@@ -34,15 +48,26 @@ public class LoginController {
         String password = txtPassword.getText().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campos incompletos");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor completa el correo y la contraseña.");
-            alert.showAndWait();
+            mostrarAlerta("Campos incompletos", "Por favor completa el correo y la contraseña.",
+                    Alert.AlertType.WARNING);
             return;
         }
 
-        cargarVista("/view/Catalogo.fxml");
+        // Validación usando TiendaManager y los archivos JSON/nodos
+        boolean loginExitoso = tiendaManager.iniciarSesion(email, password);
+
+        if (loginExitoso) {
+            Usuario usuarioActual = tiendaManager.getUsuarioActual();
+
+            // Verificamos si es Administrador o Cliente según el prototipo
+            if (usuarioActual.getCorreo().equalsIgnoreCase("admin@tienda.com")) {
+                cargarVista("/view/Inventario.fxml"); // Panel de administración del prototipo
+            } else {
+                cargarVista("/view/Catalogo.fxml"); // Tienda / Catálogo del cliente
+            }
+        } else {
+            mostrarAlerta("Credenciales incorrectas", "El correo o la contraseña no coinciden.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -60,15 +85,32 @@ public class LoginController {
         cargarVista("/view/Catalogo.fxml");
     }
 
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
     private void cargarVista(String rutaFXML) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            // Verificamos que el recurso exista antes de cargarlo
+            var resource = getClass().getResource(rutaFXML);
+            if (resource == null) {
+                mostrarAlerta("Error de ruta", "No se encontró el archivo FXML en: " + rutaFXML, Alert.AlertType.ERROR);
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            mostrarAlerta("Error de navegación",
+                    "No se pudo cargar la vista: " + rutaFXML + "\nDetalle: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 }

@@ -72,7 +72,7 @@
                     <VBox spacing="6.0">
                         <Label text="Descripción" textFill="#c9d1d9" />
                         <TextArea fx:id="txtDescripcion" promptText="Descripción del producto..." prefHeight="80.0" wrapText="true"
-                                  style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                                  style="-fx-background-color: #0d1117; -fx-control-inner-background: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-highlight-fill: #264f78; -fx-highlight-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
                     </VBox>
 
                     <HBox spacing="15.0">

@@ -1,12 +1,21 @@
-# Archivos compilados de Java
+
+# Compilados y Artefactos de Salida
+/bin/
+/build/
+/dist/
+/out/
 *.class
-build/
-dist/
-target/
+*.jar
+*.war
+*.ear
 
-# Archivos de NetBeans
-nbproject/
-build.xml
-
-# Archivos de VS Code
+# VS Code
 .vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.log
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db

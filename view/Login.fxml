@@ -80,7 +80,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <CheckBox fx:id="chkRecordarme" text="Recordarme" textFill="#c9d1d9" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Hyperlink fx:id="linkOlvidar" text="¿Olvidaste tu contraseña?" textFill="#00d4ff" style="-fx-border-color: transparent;" onAction="#onOlvidar" />
+                <Hyperlink fx:id="linkOlvidar" text="¿Olvidaste tu contraseña?" onAction="#onOlvidar" textFill="#00d4ff" style="-fx-border-color: transparent;" />
             </HBox>
             
             <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin" 
