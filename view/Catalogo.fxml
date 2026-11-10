@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CatalogoController">
+
+    <!-- BARRA SUPERIOR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #161b22; -fx-padding: 12 25 12 25;">
+            <Label text="nexo" textFill="#00d4ff">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            
+            <TextField fx:id="txtBuscar" promptText="Buscar consolas, juegos y accesorios..." prefHeight="36.0" prefWidth="320.0"
+                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Hyperlink fx:id="linkListaDeseos" text="Lista de Deseos" textFill="#c9d1d9" style="-fx-border-color: transparent;" onAction="#onListaDeseos" />
+            <Button fx:id="btnCarrito" text="Carrito" onAction="#onCarrito"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-border-color: #30363d; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" />
+            <Button fx:id="btnMiCuenta" text="Mi cuenta" onAction="#onMiCuenta"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-border-color: #30363d; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" />
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <VBox spacing="20.0" style="-fx-padding: 25;">
+            
+            <!-- Banner superior -->
+            <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 20;">
+                <VBox spacing="8.0">
+                    <Label text="Tu siguiente nivel te espera." textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="22.0" />
+                        </font>
+                    </Label>
+                    <Label text="Descubre consolas, juegos y accesorios." textFill="#8b949e" />
+                    <Button fx:id="btnDestacado" text="Descubrir PS5 Slim  $499.00" onAction="#onDestacado"
+                            style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 8 16;" />
+                </VBox>
+            </HBox>
+
+            <!-- Título y filtros -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Label text="Encuentra tu próxima partida" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <ComboBox fx:id="cmbCategoria" promptText="Categoría" prefWidth="140.0" />
+                <ComboBox fx:id="cmbOrdenar" promptText="Ordenar por" prefWidth="140.0" />
+            </HBox>
+
+            <!-- Grid de productos (simplificado) -->
+            <FlowPane fx:id="flowProductos" hgap="15.0" vgap="15.0" prefWrapLength="1000">
+                <!-- Los productos se agregarán dinámicamente desde el controller más adelante -->
+            </FlowPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>
