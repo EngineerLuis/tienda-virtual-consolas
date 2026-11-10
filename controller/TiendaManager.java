@@ -423,4 +423,35 @@ public class TiendaManager {
     }
     return false;
 }
+
+// Método unificador para obtener todos los productos sin importar su categoría específica
+    public ListaDobleEnlazada<Producto> getListaProductos() {
+        ListaDobleEnlazada<Producto> todos = new ListaDobleEnlazada<>();
+        
+        Nodo<Consola> auxC = listaConsolas.getCabeza();
+        while (auxC != null) {
+            todos.agregarLista(auxC.getDato());
+            auxC = auxC.getSiguiente();
+        }
+        
+        Nodo<Juego> auxJ = listaJuegos.getCabeza();
+        while (auxJ != null) {
+            todos.agregarLista(auxJ.getDato());
+            auxJ = auxJ.getSiguiente();
+        }
+        
+        Nodo<Control> auxCo = listaControles.getCabeza();
+        while (auxCo != null) {
+            todos.agregarLista(auxCo.getDato());
+            auxCo = auxCo.getSiguiente();
+        }
+        
+        Nodo<Accesorios> auxA = listaAccesorios.getCabeza();
+        while (auxA != null) {
+            todos.agregarLista(auxA.getDato());
+            auxA = auxA.getSiguiente();
+        }
+        
+        return todos;
+    }
 }
