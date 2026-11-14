@@ -1,3 +1,6 @@
+// Modelo de productos de tipo juego.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Juego extends Producto {

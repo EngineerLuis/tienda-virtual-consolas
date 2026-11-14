@@ -1,3 +1,6 @@
+// Estructura genérica con nodos enlazados en ambas direcciones.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class ListaDobleEnlazada<T> {

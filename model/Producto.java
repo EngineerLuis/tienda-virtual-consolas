@@ -1,3 +1,6 @@
+// Modelo base con los datos comunes de todos los productos.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Producto {

@@ -1,3 +1,6 @@
+// Modelo de productos de tipo control.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Control extends Producto {

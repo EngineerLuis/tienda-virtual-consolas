@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador que carga, filtra y muestra los productos disponibles.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import javafx.scene.image.Image;
@@ -123,7 +126,7 @@ public class CatalogoController {
                 "-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: #30363d; -fx-border-radius: 10;");
         card.setAlignment(Pos.TOP_LEFT);
 
-        // 1. Imagen del producto
+        // Imagen del producto
         ImageView imageView = new ImageView();
         imageView.setFitWidth(190);
         imageView.setFitHeight(110);
@@ -149,7 +152,7 @@ public class CatalogoController {
             System.out.println("Error cargando imagen para " + producto.getNombre() + ": " + e.getMessage());
         }
 
-        // 2. Información general
+        // Información general
         Label lblNombre = new Label(producto.getNombre());
         lblNombre.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;");
         lblNombre.setWrapText(true);
@@ -158,7 +161,7 @@ public class CatalogoController {
                 "Categoría: " + (producto.getCategoria() != null ? producto.getCategoria() : "General"));
         lblCat.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 11px;");
 
-        // 3. Especificaciones dinámicas según el tipo de producto
+        // Especificaciones dinámicas según el tipo de producto
         StringBuilder specs = new StringBuilder();
         if (producto instanceof Consola) {
             Consola c = (Consola) producto;
@@ -186,14 +189,14 @@ public class CatalogoController {
         lblSpecs.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 11px;");
         lblSpecs.setWrapText(true);
 
-        // 4. Precio y Stock
+        // Precio y Stock
         Label lblPrecio = new Label(String.format("$%.2f", producto.getPrecio()));
         lblPrecio.setStyle("-fx-text-fill: #00d4ff; -fx-font-weight: bold; -fx-font-size: 15px;");
 
         Label lblStock = new Label("Stock: " + producto.getStock());
         lblStock.setStyle("-fx-text-fill: #c9d1d9; -fx-font-size: 11px;");
 
-        // 5. Botón Agregar
+        // Botón Agregar
         Button btnAgregar = new Button("Añadir al carrito");
         btnAgregar.setMaxWidth(Double.MAX_VALUE);
         btnAgregar.setStyle(

@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador que muestra el historial y los indicadores de ventas.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;
@@ -48,7 +51,7 @@ public class VentasController {
     public void initialize() {
         tiendaManager = new TiendaManager();
 
-        // 1. Configurar las columnas con los atributos de la clase Pedido
+        // Configurar las columnas con los atributos de la clase Pedido
         colPedido.setCellValueFactory(new PropertyValueFactory<>("idPedido"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
@@ -57,7 +60,7 @@ public class VentasController {
         colMetodoPago.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));
         colDireccionEnvio.setCellValueFactory(new PropertyValueFactory<>("direccionEnvio"));
 
-        // 2. Cargar los datos reales desde el historial de pedidos
+        // Cargar los datos reales desde el historial de pedidos
         cargarDatosVentas();
     }
 

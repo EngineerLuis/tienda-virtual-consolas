@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador de la pantalla de configuración administrativa.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;

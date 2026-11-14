@@ -1,3 +1,6 @@
+// Controlador que valida y actualiza la contraseña de un usuario.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;

@@ -1,3 +1,6 @@
+// Modelo que representa un pedido confirmado por un cliente.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 import java.util.List;

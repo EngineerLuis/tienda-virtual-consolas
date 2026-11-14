@@ -1,3 +1,6 @@
+// Estructura enlazada que administra elementos con comportamiento LIFO.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Pila<T> {

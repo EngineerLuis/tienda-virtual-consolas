@@ -1,3 +1,6 @@
+// Clase genérica encargada de serializar y deserializar datos JSON.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import com.google.gson.Gson;

@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador de la vista para crear y editar productos del inventario.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.File;
@@ -171,7 +174,7 @@ public class AgregarProductoController {
         String precioStr = txtPrecio.getText().trim();
         String stockStr = txtStock.getText().trim();
 
-        // 1. Validar campos obligatorios
+        // Validar campos obligatorios
         if (nombre.isEmpty() || precioStr.isEmpty() || stockStr.isEmpty() || categoria == null) {
             mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos",
                     "Por favor completa los campos obligatorios (*).");

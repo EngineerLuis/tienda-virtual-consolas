@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador que valida los datos y registra nuevas cuentas.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;
@@ -18,10 +21,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Usuario;
 
-/**
- *
- * @author 74ND
- */
+//
+ //
+ // @author 74ND
+ //
 public class CrearCuentaController {
 
     @FXML
@@ -53,33 +56,33 @@ public class CrearCuentaController {
         String password = txtPassword.getText().trim();
         String confirmarPassword = txtConfirmarPassword.getText().trim();
 
-        // 1. Validar campos vacíos
+        // Validar campos vacíos
         if (nombre.isEmpty() || email.isEmpty() || password.isEmpty() || confirmarPassword.isEmpty()) {
             mostrarAlerta("Campos incompletos", "Por favor completa todos los campos del formulario.",
                     Alert.AlertType.WARNING);
             return;
         }
 
-        // 2. Validar coincidencia de contraseñas
+        // Validar coincidencia de contraseñas
         if (!password.equals(confirmarPassword)) {
             mostrarAlerta("Contraseñas no coinciden", "La contraseña y la confirmación deben ser iguales.",
                     Alert.AlertType.ERROR);
             return;
         }
 
-        // 3. Validar aceptación de términos
+        // Validar aceptación de términos
         if (!chkTerminos.isSelected()) {
             mostrarAlerta("Términos y condiciones", "Debes aceptar los términos y condiciones para crear una cuenta.",
                     Alert.AlertType.WARNING);
             return;
         }
 
-        // 4. Crear el objeto Usuario (Asegúrate de ajustar el constructor según los
+        // Crear el objeto Usuario (Asegúrate de ajustar el constructor según los
         // atributos de tu clase Usuario)
         // Por lo general recibe: (nombre, correo, contrasena) o similar
         Usuario nuevoUsuario = new Usuario(nombre, email, password);
 
-        // 5. Intentar registrar en el TiendaManager (valida si ya existe el correo y
+        // Intentar registrar en el TiendaManager (valida si ya existe el correo y
         // guarda en JSON)
         boolean registradoExitoso = tiendaManager.registrarUsuario(nuevoUsuario);
 

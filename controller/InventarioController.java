@@ -1,3 +1,6 @@
+// Controlador que administra la tabla y las acciones del inventario.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;
@@ -65,17 +68,17 @@ public class InventarioController {
     public void initialize() {
         tiendaManager = new TiendaManager();
 
-        // 1. Configurar las columnas de la tabla con los atributos de Producto
+        // Configurar las columnas de la tabla con los atributos de Producto
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colProducto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
-        // 2. Cargar los datos reales desde las listas enlazadas del gestor
+        // Cargar los datos reales desde las listas enlazadas del gestor
         cargarDatosInventario();
 
-        // 3. Configurar los botones de acción (Eliminar) en cada fila
+        // Configurar los botones de acción (Eliminar) en cada fila
         configurarBotonAcciones();
     }
 

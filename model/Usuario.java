@@ -1,3 +1,6 @@
+// Modelo que representa una cuenta y sus pedidos asociados.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 import java.util.ArrayList;

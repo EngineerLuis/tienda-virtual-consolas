@@ -1,3 +1,6 @@
+// Gestor central de usuarios, productos, carrito, pedidos y persistencia.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import model.*;

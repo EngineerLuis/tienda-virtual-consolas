@@ -1,3 +1,6 @@
+// Nodo genérico que enlaza un dato con sus vecinos.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Nodo<T> {

@@ -1,3 +1,6 @@
+// Clase principal que configura y muestra la ventana inicial de JavaFX.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

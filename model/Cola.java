@@ -1,3 +1,6 @@
+// Estructura enlazada que administra elementos con comportamiento FIFO.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package model;
 
 public class Cola<T> {

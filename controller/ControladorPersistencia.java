@@ -1,3 +1,6 @@
+// Fachada para leer y guardar las colecciones persistidas.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import model.Accesorios;

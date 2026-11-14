@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ //
+// Controlador que presenta el resumen de clientes y sus pedidos.
+// Este archivo forma parte de la aplicación de tienda virtual.
+
 package controller;
 
 import java.io.IOException;
@@ -44,12 +47,12 @@ public class ClientesController {
     public void initialize() {
         tiendaManager = new TiendaManager();
 
-        // 1. Configurar las columnas con los atributos de la clase Usuario
+        // Configurar las columnas con los atributos de la clase Usuario
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("correo"));
         colPedidos.setCellValueFactory(new PropertyValueFactory<>("cantidadPedidos"));
 
-        // 2. Cargar los datos desde las listas enlazadas de usuarios
+        // Cargar los datos desde las listas enlazadas de usuarios
         cargarDatosClientes();
     }
 
