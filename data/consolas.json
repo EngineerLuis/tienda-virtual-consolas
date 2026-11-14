@@ -1,14 +1,14 @@
 [
   {
-    "procesador": "Turbo",
-    "almacenamiento": "Envolvente",
-    "resolucion": "7 velocidades",
-    "id": "PROD-6181",
-    "nombre": "Polla Negra",
+    "procesador": "Nvidia Tegra x1",
+    "almacenamiento": "64gb",
+    "resolucion": "1080p",
+    "id": "PROD-9248",
+    "nombre": "Nintendo Switch Oled Bundle",
     "categoria": "Consolas",
-    "stock": 67,
-    "precio": 666.0,
-    "descripcion": "Grande",
-    "rutaImagen": "IMG_780cb272-2eff-49c0-a03d-a4ff624df934.jpg"
+    "stock": 23,
+    "precio": 200.0,
+    "descripcion": "Este paquete contiene todo lo que necesitas para comenzar a jugar inmediatamente. Incluye una consola Nintendo Switch™ Modelo OLED con controles Joy-Con™ blancos, el juego Super Mario Bros Wonder y una suscripción individual por 3 meses a Nintendo Switch Online*.",
+    "rutaImagen": "NintendoSwitchOled.png"
   }
 ]

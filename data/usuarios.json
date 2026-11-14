@@ -15,5 +15,11 @@
     "correo": "aly@gmail.com",
     "contrasena": "456",
     "misPedidos": []
+  },
+  {
+    "nombre": "camila gomez",
+    "correo": "camila@gmail.com",
+    "contrasena": "11111",
+    "misPedidos": []
   }
 ]

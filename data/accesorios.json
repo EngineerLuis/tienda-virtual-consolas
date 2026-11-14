@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "conectividad": "Inalambrica",
+    "id": "PROD-5617",
+    "nombre": "Diademas HyperX Stinger 2",
+    "categoria": "Accesorios",
+    "stock": 12,
+    "precio": 23.0,
+    "descripcion": "• Audio espacial de DTS® Headphone:X®, que libera la espacialización y la localización precisas del audio 3D. Con el código de activación incluido podrás disfrutar del audio espacial de DTS® Headphone:X® durante 2 años. Este tipo de audio te ofrece mayor percepción, conocimiento e inmersión.\n• Comodidad característica de HyperX: gracias a sus almohadillas de espuma viscoelástica y su piel sintética suave, los audífonos Cloud Stinger 2 ofrecen comodidad de calidad superior sin que debas pagar el precio de un artículo de lujo.\n• Sonido superior: los controladores de 50 mm producen sonidos con respuesta de amplia frecuencia que te ayudan a captar mejor las señales de audio y mejorar el nivel de entretenimiento que te ofrece el audio.",
+    "rutaImagen": "HyperXDiademasStinger2.png"
+  }
+]

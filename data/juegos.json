@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "resolucion": "4k",
+    "id": "PROD-7482",
+    "nombre": "GTA VI XBOX SERIES S/X",
+    "categoria": "Juegos",
+    "stock": 12,
+    "precio": 55.0,
+    "descripcion": "Vive la emoción de Juego PS5 Grand Theft Auto VI (Voucher Descargable) y sumérgete en una historia donde cada decisión define tu camino",
+    "rutaImagen": "GTA VI XBOX SERIES.png"
+  }
+]

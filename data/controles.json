@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "conectividad": "inalambrico",
+    "id": "PROD-9608",
+    "nombre": "Dualsense Negro PS5",
+    "categoria": "Controles",
+    "stock": 22,
+    "precio": 50.0,
+    "descripcion": "Este mando combina funciones revolucionarias mientras conserva precisión, comodidad y exactitud en cada movimiento. Gracias a su ergonomía especialmente pensada para la posición de tu mano, puedes pasar horas jugando con total confort.",
+    "rutaImagen": "DualsensePS5 Black.png"
+  }
+]

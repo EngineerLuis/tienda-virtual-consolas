@@ -6,6 +6,10 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -135,8 +139,22 @@ public class AgregarProductoController {
         File archivoSeleccionado = fileChooser.showOpenDialog(stage);
 
         if (archivoSeleccionado != null) {
-            rutaImagenSeleccionada = archivoSeleccionado.getName();
-            lblNombreImagen.setText(rutaImagenSeleccionada);
+            try {
+                Path carpetaImagenes = Paths.get("data", "images");
+                Files.createDirectories(carpetaImagenes);
+
+                Path origen = archivoSeleccionado.toPath().toAbsolutePath().normalize();
+                Path destino = carpetaImagenes.resolve(archivoSeleccionado.getName()).toAbsolutePath().normalize();
+                if (!origen.equals(destino)) {
+                    Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                rutaImagenSeleccionada = archivoSeleccionado.getName();
+                lblNombreImagen.setText(rutaImagenSeleccionada);
+            } catch (IOException e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "No se pudo copiar la imagen",
+                        "La imagen no pudo guardarse en la carpeta de imágenes.");
+            }
         }
     }
 
@@ -171,8 +189,19 @@ public class AgregarProductoController {
             return;
         }
 
-        // 2. Generar un ID único basado en la categoría y milisegundos actuales
+        if (precio <= 0 || stock < 0) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Valores inválidos",
+                    "El precio debe ser mayor que cero y el stock no puede ser negativo.");
+            return;
+        }
+
         if (productoEditar != null) {
+            if (!productoEditar.getCategoria().equals(categoria)) {
+                mostrarAlerta(Alert.AlertType.WARNING, "Categoría no modificable",
+                        "La categoría no puede cambiarse al editar un producto.");
+                return;
+            }
+
             Producto actualizado = crearProductoConDatos(productoEditar.getId(), nombre, categoria, stock, precio,
                     descripcion);
             if (tiendaManager.actualizarProducto(actualizado)) {
@@ -188,8 +217,7 @@ public class AgregarProductoController {
 
         String id = "PROD-" + System.currentTimeMillis() % 10000;
 
-        // 3. Crear y agregar el producto según la categoría seleccionada usando
-        // TiendaManager
+        // Crear y agregar el producto según la categoría seleccionada.
         switch (categoria) {
             case "Consolas":
                 Consola nuevaConsola = new Consola(id, nombre, categoria, stock, precio, descripcion,

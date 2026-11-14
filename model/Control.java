@@ -4,8 +4,8 @@ public class Control extends Producto {
 
     private String conectividad;
 
-    public Control(String id, String nombre, String marca, int stock, float precio, String descripcion, String rutaImagen, String conectividad) {
-        super(id, nombre, marca, stock, precio, descripcion, rutaImagen);
+    public Control(String id, String nombre, String categoria, int stock, float precio, String descripcion, String rutaImagen, String conectividad) {
+        super(id, nombre, categoria, stock, precio, descripcion, rutaImagen);
         this.conectividad = conectividad;
     }
 

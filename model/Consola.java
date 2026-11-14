@@ -1,15 +1,14 @@
 package model;
 
-public  class Consola extends Producto {
+public class Consola extends Producto {
 
     private String procesador;
     private String almacenamiento;
     private String resolucion;
 
-
-
-    public Consola(String id, String nombre, String marca, int stock, float precio, String descripcion, String rutaImagen, String procesador, String almacenamiento, String resolucion) {
-        super(id, nombre, marca, stock, precio, descripcion, rutaImagen);
+    public Consola(String id, String nombre, String categoria, int stock, float precio, String descripcion,
+            String rutaImagen, String procesador, String almacenamiento, String resolucion) {
+        super(id, nombre, categoria, stock, precio, descripcion, rutaImagen);
         this.procesador = procesador;
         this.almacenamiento = almacenamiento;
         this.resolucion = resolucion;
@@ -27,15 +26,15 @@ public  class Consola extends Producto {
         return resolucion;
     }
 
-    public void setProcesador(String procesador){
+    public void setProcesador(String procesador) {
         this.procesador = procesador;
     }
 
-    public void setAlmacenamiento(String almacenamiento){
+    public void setAlmacenamiento(String almacenamiento) {
         this.almacenamiento = almacenamiento;
     }
 
-    public void setResolucion(String resolucion){
+    public void setResolucion(String resolucion) {
         this.resolucion = resolucion;
     }
 }

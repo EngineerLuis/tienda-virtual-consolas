@@ -6,6 +6,7 @@ package controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
@@ -52,7 +54,7 @@ public class CatalogoController {
     public void initialize() {
         tiendaManager = new TiendaManager();
 
-        cmbCategoria.getItems().addAll("Todas", "Consolas", "Juegos", "Accesorios");
+        cmbCategoria.getItems().addAll("Todas", "Consolas", "Juegos", "Controles", "Accesorios");
         cmbCategoria.setValue("Todas");
 
         cmbOrdenar.getItems().addAll("Precio: menor a mayor", "Precio: mayor a menor", "Nombre A-Z");
@@ -131,37 +133,20 @@ public class CatalogoController {
         try {
             if (producto.getRutaImagen() != null && !producto.getRutaImagen().isEmpty()) {
                 String nombreImg = producto.getRutaImagen().trim();
-                Image img = null;
-
-                // Rutas de prueba (añadimos "images" en inglés)
-                String[] rutasPrueba = {
-                        "file:data/images/" + nombreImg,
-                        "file:data/imagenes/" + nombreImg,
-                        "file:data/imagen/" + nombreImg,
-                        "file:data/" + nombreImg,
-                        "file:" + nombreImg,
-                        "data/images/" + nombreImg,
-                        "data/imagenes/" + nombreImg,
-                        "data/imagen/" + nombreImg,
-                        nombreImg
-                };
-
-                for (String ruta : rutasPrueba) {
-                    try {
-                        img = new Image(ruta, true);
-                        if (img != null && !img.isError()) {
-                            break;
-                        }
-                    } catch (Exception ignored) {
-                    }
+                File archivoImagen = new File(nombreImg);
+                if (!archivoImagen.isAbsolute() && !archivoImagen.exists()) {
+                    archivoImagen = new File("data/images", nombreImg);
                 }
 
-                if (img != null && !img.isError()) {
+                Image img = new Image(archivoImagen.toURI().toString(), false);
+                if (!img.isError()) {
                     imageView.setImage(img);
+                } else {
+                    System.out.println("No se pudo cargar la imagen: " + archivoImagen.getAbsolutePath());
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error cargando imagen para: " + producto.getNombre());
+            System.out.println("Error cargando imagen para " + producto.getNombre() + ": " + e.getMessage());
         }
 
         // 2. Información general
@@ -178,15 +163,15 @@ public class CatalogoController {
         if (producto instanceof Consola) {
             Consola c = (Consola) producto;
             if (c.getProcesador() != null && !c.getProcesador().isEmpty())
-                specs.append("• Proc: ").append(c.getProcesador()).append("\n");
+                specs.append("• Procesador: ").append(c.getProcesador()).append("\n");
             if (c.getAlmacenamiento() != null && !c.getAlmacenamiento().isEmpty())
-                specs.append("• Almacén: ").append(c.getAlmacenamiento()).append("\n");
+                specs.append("• Almacénamiento: ").append(c.getAlmacenamiento()).append("\n");
             if (c.getResolucion() != null && !c.getResolucion().isEmpty())
-                specs.append("• Res: ").append(c.getResolucion()).append("\n");
+                specs.append("• Resolucion: ").append(c.getResolucion()).append("\n");
         } else if (producto instanceof Juego) {
             Juego j = (Juego) producto;
             if (j.getResolucion() != null && !j.getResolucion().isEmpty())
-                specs.append("• Res: ").append(j.getResolucion()).append("\n");
+                specs.append("• Resolucion: ").append(j.getResolucion()).append("\n");
         } else if (producto instanceof Control) {
             Control co = (Control) producto;
             if (co.getConectividad() != null && !co.getConectividad().isEmpty())
@@ -251,7 +236,18 @@ public class CatalogoController {
 
     private void cargarVista(String rutaFXML, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            java.net.URL recurso = getClass().getResource(rutaFXML);
+            if (recurso == null) {
+                System.err.println("No se encontró la vista: " + rutaFXML);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Vista no disponible");
+                alert.setHeaderText(null);
+                alert.setContentText("No se encontró la vista solicitada.");
+                alert.showAndWait();
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(recurso);
             Parent root = loader.load();
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

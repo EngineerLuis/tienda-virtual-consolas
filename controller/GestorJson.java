@@ -2,8 +2,17 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +26,13 @@ public class GestorJson<T> {
     }
 
     public List<T> leerDatos() {
-        if (!new File(rutaArchivo).exists()) {
+        Path archivo = Paths.get(rutaArchivo);
+        if (!Files.exists(archivo)) {
             return new ArrayList<>();
         }
+
         List<T> datos = new ArrayList<>();
-        try (Reader reader = new FileReader(rutaArchivo)) {
+        try (Reader reader = Files.newBufferedReader(archivo, StandardCharsets.UTF_8)) {
             Gson gson = new Gson();
             T[] arrayDatos = gson.fromJson(reader, tipoClase);
             if (arrayDatos != null) {
@@ -29,18 +40,43 @@ public class GestorJson<T> {
                     datos.add(dato);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | JsonParseException e) {
+            System.err.println("No se pudo leer el archivo JSON " + archivo.toAbsolutePath() + ": " + e.getMessage());
         }
         return datos;
     }
 
     public void escribirDatos(List<T> datos) {
-        try (Writer writer = new FileWriter(rutaArchivo)) {
+        Path archivo = Paths.get(rutaArchivo);
+        Path directorio = archivo.toAbsolutePath().getParent();
+        Path temporal = null;
+
+        try {
+            if (directorio != null) {
+                Files.createDirectories(directorio);
+            }
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(datos, writer);
+            temporal = Files.createTempFile(directorio, archivo.getFileName().toString(), ".tmp");
+            try (Writer writer = Files.newBufferedWriter(temporal, StandardCharsets.UTF_8)) {
+                gson.toJson(datos, writer);
+            }
+
+            try {
+                Files.move(temporal, archivo, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(temporal, archivo, StandardCopyOption.REPLACE_EXISTING);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("No se pudo guardar el archivo JSON " + archivo.toAbsolutePath() + ": " + e.getMessage());
+            if (temporal != null) {
+                try {
+                    Files.deleteIfExists(temporal);
+                } catch (IOException cleanupError) {
+                    System.err.println("No se pudo eliminar el archivo temporal " + temporal + ": "
+                            + cleanupError.getMessage());
+                }
+            }
         }
     }
 }
