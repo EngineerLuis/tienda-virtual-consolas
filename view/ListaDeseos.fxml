@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaDeseosController">
+
+    <!-- BARRA SUPERIOR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #161b22; -fx-padding: 12 25 12 25;">
+            <Label text="nexo" textFill="#00d4ff">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            
+            <TextField fx:id="txtBuscar" promptText="Buscar consolas, juegos y accesorios..." prefHeight="36.0" prefWidth="320.0"
+                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Hyperlink fx:id="linkListaDeseos" text="Lista de Deseos" textFill="#00d4ff" style="-fx-border-color: transparent;" />
+            <Button fx:id="btnCarrito" text="Carrito" onAction="#onCarrito"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-border-color: #30363d; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" />
+            <Button fx:id="btnMiCuenta" text="Mi cuenta" onAction="#onMiCuenta"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-border-color: #30363d; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" />
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO -->
+    <center>
+        <HBox spacing="25.0" style="-fx-padding: 30;">
+            
+            <!-- COLUMNA IZQUIERDA - LISTA DE PRODUCTOS -->
+            <VBox spacing="20.0" HBox.hgrow="ALWAYS">
+                
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="Lista de Deseos" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="24.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="lblCantidad" text="3 productos" textFill="#8b949e" />
+                </HBox>
+                
+                <Label text="Tus próximos favoritos, listos para cuando tú lo estés." textFill="#8b949e" />
+
+                <!-- Producto 1 -->
+                <HBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 18;">
+                    <VBox alignment="CENTER" prefWidth="90" prefHeight="70" style="-fx-background-color: #0d1117; -fx-background-radius: 8;">
+                        <Label text="Switch" textFill="#8b949e" />
+                    </VBox>
+                    
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="Nintendo Switch OLED" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label text="Disponible · 9 en stock" textFill="#8b949e" />
+                        <Label text="$349.00" textFill="#00d4ff">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                    
+                    <VBox spacing="8.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnMover1" text="Mover a Carrito" onAction="#onMover1"
+                                style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 6 12;" />
+                        <Button fx:id="btnEliminar1" text="Eliminar" onAction="#onEliminar1"
+                                style="-fx-background-color: transparent; -fx-text-fill: #f85149; -fx-cursor: hand;" />
+                    </VBox>
+                </HBox>
+
+                <!-- Producto 2 -->
+                <HBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 18;">
+                    <VBox alignment="CENTER" prefWidth="90" prefHeight="70" style="-fx-background-color: #0d1117; -fx-background-radius: 8;">
+                        <Label text="HyperX" textFill="#8b949e" />
+                    </VBox>
+                    
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="HyperX Cloud III" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label text="Disponible · 18 en stock" textFill="#8b949e" />
+                        <Label text="$89.00" textFill="#00d4ff">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                    
+                    <VBox spacing="8.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnMover2" text="Mover a Carrito" onAction="#onMover2"
+                                style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 6 12;" />
+                        <Button fx:id="btnEliminar2" text="Eliminar" onAction="#onEliminar2"
+                                style="-fx-background-color: transparent; -fx-text-fill: #f85149; -fx-cursor: hand;" />
+                    </VBox>
+                </HBox>
+
+                <!-- Producto 3 -->
+                <HBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 18;">
+                    <VBox alignment="CENTER" prefWidth="90" prefHeight="70" style="-fx-background-color: #0d1117; -fx-background-radius: 8;">
+                        <Label text="Astro Bot" textFill="#8b949e" />
+                    </VBox>
+                    
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="Astro Bot - PS5" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label text="Disponible · 23 en stock" textFill="#8b949e" />
+                        <Label text="$79.00" textFill="#00d4ff">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                    
+                    <VBox spacing="8.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnMover3" text="Mover a Carrito" onAction="#onMover3"
+                                style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 6 12;" />
+                        <Button fx:id="btnEliminar3" text="Eliminar" onAction="#onEliminar3"
+                                style="-fx-background-color: transparent; -fx-text-fill: #f85149; -fx-cursor: hand;" />
+                    </VBox>
+                </HBox>
+
+            </VBox>
+
+            <!-- COLUMNA DERECHA - RESUMEN -->
+            <VBox spacing="20.0" prefWidth="280">
+                
+                <!-- Tu colección -->
+                <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 20;">
+                    <Label text="Tu colección" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Productos guardados" textFill="#8b949e" />
+                    <Label fx:id="lblTotalProductos" text="3" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="22.0" />
+                        </font>
+                    </Label>
+                    <Label text="Valor actual de tu lista" textFill="#8b949e" />
+                    <Label fx:id="lblValorTotal" text="$517.00" textFill="#00d4ff">
+                        <font>
+                            <Font name="System Bold" size="22.0" />
+                        </font>
+                    </Label>
+                    <Label text="Guardar un producto no reserva el stock. El precio y la disponibilidad se confirman al agregarlo al carrito." textFill="#8b949e" wrapText="true" />
+                </VBox>
+
+                <!-- Completa tu setup -->
+                <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 20;">
+                    <Label text="COMPLETA TU SETUP" textFill="#8b949e">
+                        <font>
+                            <Font size="12.0" />
+                        </font>
+                    </Label>
+                    
+                    <VBox alignment="CENTER" prefHeight="80" style="-fx-background-color: #0d1117; -fx-background-radius: 8;">
+                        <Label text="DualSense" textFill="#8b949e" />
+                    </VBox>
+                    
+                    <Label text="DualSense - Blanco" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+                    <Label text="$69.00" textFill="#00d4ff" />
+                    
+                    <Button fx:id="btnVerProducto" text="Ver producto →" onAction="#onVerProducto"
+                            style="-fx-background-color: transparent; -fx-text-fill: #00d4ff; -fx-cursor: hand;" />
+                </VBox>
+
+                <Button fx:id="btnSeguirExplorando" text="→ Seguir explorando" maxWidth="Infinity" onAction="#onSeguirExplorando"
+                        style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 12;" />
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>
