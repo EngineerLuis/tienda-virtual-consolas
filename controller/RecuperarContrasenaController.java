@@ -30,7 +30,7 @@ public class RecuperarContrasenaController {
     private final TiendaManager tiendaManager;
 
     public RecuperarContrasenaController() {
-        this.tiendaManager = new TiendaManager();
+        this.tiendaManager = TiendaManager.getInstancia();
     }
 
 @FXML

@@ -1,7 +1,7 @@
 //
- // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- //
+// Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+// Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+//
 // Controlador que carga, filtra y muestra los productos disponibles.
 // Este archivo forma parte de la aplicación de tienda virtual.
 
@@ -55,7 +55,7 @@ public class CatalogoController {
 
     @FXML
     public void initialize() {
-        tiendaManager = new TiendaManager();
+        tiendaManager = TiendaManager.getInstancia();
 
         cmbCategoria.getItems().addAll("Todas", "Consolas", "Juegos", "Controles", "Accesorios");
         cmbCategoria.setValue("Todas");
@@ -119,9 +119,11 @@ public class CatalogoController {
 
     // Método auxiliar para generar dinámicamente la tarjeta visual de cada producto
     // en el catálogo
+    // Método auxiliar para generar dinámicamente la tarjeta visual de cada producto
+    // en el catálogo
     private VBox crearTarjetaProducto(Producto producto) {
         VBox card = new VBox(8);
-        card.setPrefSize(220, 390); // Ajustamos la altura para que entren bien las especificaciones
+        card.setPrefSize(220, 430); // Ajustamos la altura para que entren ambos botones
         card.setStyle(
                 "-fx-background-color: #161b22; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: #30363d; -fx-border-radius: 10;");
         card.setAlignment(Pos.TOP_LEFT);
@@ -196,7 +198,7 @@ public class CatalogoController {
         Label lblStock = new Label("Stock: " + producto.getStock());
         lblStock.setStyle("-fx-text-fill: #c9d1d9; -fx-font-size: 11px;");
 
-        // Botón Agregar
+        // Botón Añadir al carrito
         Button btnAgregar = new Button("Añadir al carrito");
         btnAgregar.setMaxWidth(Double.MAX_VALUE);
         btnAgregar.setStyle(
@@ -207,12 +209,23 @@ public class CatalogoController {
             System.out.println("Producto añadido al carrito: " + producto.getNombre());
         });
 
+        // Botón Añadir a Lista de Deseos
+        Button btnDeseos = new Button("♥ Añadir a Deseos");
+        btnDeseos.setMaxWidth(Double.MAX_VALUE);
+        btnDeseos.setStyle(
+                "-fx-background-color: #21262d; -fx-text-fill: #00d4ff; -fx-font-weight: bold; -fx-border-color: #30363d; -fx-background-radius: 6; -fx-border-radius: 6; -fx-cursor: hand;");
+
+        btnDeseos.setOnAction(e -> {
+            tiendaManager.agregarAListaDeseos(producto);
+            System.out.println("Producto añadido a la lista de deseos: " + producto.getNombre());
+        });
+
         // Añadir elementos a la tarjeta en orden
         card.getChildren().addAll(imageView, lblNombre, lblCat);
         if (!specs.toString().isEmpty()) {
             card.getChildren().add(lblSpecs);
         }
-        card.getChildren().addAll(lblPrecio, lblStock, btnAgregar);
+        card.getChildren().addAll(lblPrecio, lblStock, btnAgregar, btnDeseos);
 
         return card;
     }

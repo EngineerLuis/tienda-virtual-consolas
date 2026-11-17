@@ -7,6 +7,7 @@ import model.Accesorios;
 import model.Consola;
 import model.Control;
 import model.Juego;
+import model.Producto;
 import model.Usuario;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class ControladorPersistencia {
     private final GestorJson<Control> gestorControl;
     private final GestorJson<Juego> gestorJuego;
     private final GestorJson<Accesorios> gestorAccesorios;
+    private final GestorJson<Producto> gestorDeseos;
 
     public ControladorPersistencia() {
         this.gestorUsuario = new GestorJson<>("data/usuarios.json", Usuario[].class);
@@ -24,6 +26,7 @@ public class ControladorPersistencia {
         this.gestorControl = new GestorJson<>("data/controles.json", Control[].class);
         this.gestorJuego = new GestorJson<>("data/juegos.json", Juego[].class);
         this.gestorAccesorios = new GestorJson<>("data/accesorios.json", Accesorios[].class);
+        this.gestorDeseos = new GestorJson<>("data/deseos.json", Producto[].class);
     }
 
     //gestion de usuarios
@@ -69,6 +72,15 @@ public class ControladorPersistencia {
 
     public void guardarAccesorios(List<Accesorios> accesorios) {
         gestorAccesorios.escribirDatos(accesorios);
+    }
+
+    // GESTIÓN DE LISTA DE DESEOS
+    public List<Producto> obtenerDeseos() {
+        return gestorDeseos.leerDatos();
+    }
+
+    public void guardarDeseos(List<Producto> deseos) {
+        gestorDeseos.escribirDatos(deseos);
     }
 
 

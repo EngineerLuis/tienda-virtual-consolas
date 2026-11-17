@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TiendaManager {
+    private static TiendaManager instanciaUnica;
+
+    public static synchronized TiendaManager getInstancia() {
+        if (instanciaUnica == null) {
+            instanciaUnica = new TiendaManager();
+        }
+        return instanciaUnica;
+    }
 
     private final ControladorPersistencia persistencia;
 
@@ -86,6 +94,13 @@ public class TiendaManager {
             for (Usuario u : usuariosJava)
                 listaUsuarios.agregarLista(u);
         }
+
+        List<Producto> deseosJava = persistencia.obtenerDeseos();
+        listaDeseos.limpiarLista();
+        if (deseosJava != null) {
+            for (Producto p : deseosJava)
+                listaDeseos.agregarLista(p);
+        }
     }
 
     // GUARDAR DATOS (Nodos -> JSON)
@@ -139,6 +154,16 @@ public class TiendaManager {
         persistencia.guardarUsuarios(list);
     }
 
+    public void guardarDeseosEnDisco() {
+        List<Producto> list = new ArrayList<>();
+        Nodo<Producto> aux = listaDeseos.getCabeza();
+        while (aux != null) {
+            list.add(aux.getDato());
+            aux = aux.getSiguiente();
+        }
+        persistencia.guardarDeseos(list);
+    }
+
     // GESTIÓN DE USUARIOS Y AUTENTICACIÓN
     public boolean registrarUsuario(Usuario nuevoUsuario) {
         // Verificar si ya existe el correo
@@ -190,7 +215,7 @@ public class TiendaManager {
             total += p.getPrecio();
         }
 
-        //Crear objeto Pedido para el historial (visto por Admin y Cliente)
+        // Crear objeto Pedido para el historial (visto por Admin y Cliente)
         String idPedido = "DEM-" + (100 + historialPedidos.getTamano() + 1);
         String fecha = java.time.LocalDate.now().toString();
         Pedido nuevoPedido = new Pedido(idPedido, fecha, usuarioActual != null ? usuarioActual.getNombre() : "Invitado",
@@ -212,9 +237,9 @@ public class TiendaManager {
         return historialPedidos;
     }
 
-    //LISTA DE DESEOS (Wishlist)
+    // LISTA DE DESEOS (Wishlist)
     public void agregarAListaDeseos(Producto p) {
-        //Evitar duplicados opcionalmente
+        // Evitar duplicados
         Nodo<Producto> aux = listaDeseos.getCabeza();
         while (aux != null) {
             if (aux.getDato().getId().equals(p.getId()))
@@ -222,10 +247,15 @@ public class TiendaManager {
             aux = aux.getSiguiente();
         }
         listaDeseos.agregarLista(p);
+        guardarDeseosEnDisco(); // Guarda automáticamente en el JSON
     }
 
     public boolean eliminarDeListaDeseos(Producto p) {
-        return listaDeseos.eliminarLista(p);
+        boolean eliminado = listaDeseos.eliminarLista(p);
+        if (eliminado) {
+            guardarDeseosEnDisco(); // Actualiza el JSON al eliminar
+        }
+        return eliminado;
     }
 
     public ListaDobleEnlazada<Producto> getListaDeseos() {
@@ -263,13 +293,13 @@ public class TiendaManager {
         return eliminado;
     }
 
-    public void agregarControl(Control c){
+    public void agregarControl(Control c) {
         listaControles.agregarLista(c);
         guardarControlesEnDisco();
         historialAccionesAdmin.agregarPila("Se agrego el control: " + c.getNombre());
     }
 
-    public boolean eliminarControl(Control c){
+    public boolean eliminarControl(Control c) {
         boolean eliminado = listaControles.eliminarLista(c);
         if (eliminado) {
             guardarControlesEnDisco();
@@ -278,20 +308,20 @@ public class TiendaManager {
         return eliminado;
     }
 
-    public void agregarAccesorio(Accesorios a){
+    public void agregarAccesorio(Accesorios a) {
         listaAccesorios.agregarLista(a);
         guardarAccesoriosEnDisco();
         historialAccionesAdmin.agregarPila("Se agrego el accesorio: " + a.getNombre());
     }
 
-    public boolean eliminarAccesorio(Accesorios a){
+    public boolean eliminarAccesorio(Accesorios a) {
         boolean eliminado = listaAccesorios.eliminarLista(a);
         if (eliminado) {
             guardarAccesoriosEnDisco();
             historialAccionesAdmin.agregarPila("Se eliminó el accesorio: " + a.getNombre());
         }
         return eliminado;
-    } 
+    }
 
     public boolean actualizarProducto(Producto productoActualizado) {
         if (productoActualizado == null || productoActualizado.getId() == null) {
@@ -414,47 +444,48 @@ public class TiendaManager {
     }
 
     public boolean actualizarContrasena(String correo, String nuevaContrasena) {
-    Nodo<Usuario> aux = listaUsuarios.getCabeza();
-    while (aux != null) {
-        Usuario u = aux.getDato();
-        if (u.getCorreo().equalsIgnoreCase(correo)) {
-            u.setContrasena(nuevaContrasena); // Actualiza la contraseña en el objeto
-            guardarUsuariosEnDisco();         // Guarda los cambios en el JSON
-            return true;
+        Nodo<Usuario> aux = listaUsuarios.getCabeza();
+        while (aux != null) {
+            Usuario u = aux.getDato();
+            if (u.getCorreo().equalsIgnoreCase(correo)) {
+                u.setContrasena(nuevaContrasena); // Actualiza la contraseña en el objeto
+                guardarUsuariosEnDisco(); // Guarda los cambios en el JSON
+                return true;
+            }
+            aux = aux.getSiguiente();
         }
-        aux = aux.getSiguiente();
+        return false;
     }
-    return false;
-}
 
-// Método unificador para obtener todos los productos sin importar su categoría específica
+    // Método unificador para obtener todos los productos sin importar su categoría
+    // específica
     public ListaDobleEnlazada<Producto> getListaProductos() {
         ListaDobleEnlazada<Producto> todos = new ListaDobleEnlazada<>();
-        
+
         Nodo<Consola> auxC = listaConsolas.getCabeza();
         while (auxC != null) {
             todos.agregarLista(auxC.getDato());
             auxC = auxC.getSiguiente();
         }
-        
+
         Nodo<Juego> auxJ = listaJuegos.getCabeza();
         while (auxJ != null) {
             todos.agregarLista(auxJ.getDato());
             auxJ = auxJ.getSiguiente();
         }
-        
+
         Nodo<Control> auxCo = listaControles.getCabeza();
         while (auxCo != null) {
             todos.agregarLista(auxCo.getDato());
             auxCo = auxCo.getSiguiente();
         }
-        
+
         Nodo<Accesorios> auxA = listaAccesorios.getCabeza();
         while (auxA != null) {
             todos.agregarLista(auxA.getDato());
             auxA = auxA.getSiguiente();
         }
-        
+
         return todos;
     }
 }

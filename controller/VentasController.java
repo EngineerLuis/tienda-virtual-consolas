@@ -1,7 +1,7 @@
 //
- // Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- // Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- //
+// Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+// Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+//
 // Controlador que muestra el historial y los indicadores de ventas.
 // Este archivo forma parte de la aplicación de tienda virtual.
 
@@ -25,37 +25,54 @@ import model.*;
 
 public class VentasController {
 
-    @FXML private Button btnInventario;
-    @FXML private Button btnVentas;
-    @FXML private Button btnClientes;
-    @FXML private Button btnConfiguracion;
-    @FXML private Button btnVolverTienda;
+    @FXML
+    private Button btnInventario;
+    @FXML
+    private Button btnVentas;
+    @FXML
+    private Button btnClientes;
+    @FXML
+    private Button btnConfiguracion;
+    @FXML
+    private Button btnVolverTienda;
 
-    @FXML private Label lblIngresos;
-    @FXML private Label lblPedidos;
-    @FXML private Label lblUnidades;
-    @FXML private Label lblTicket;
+    @FXML
+    private Label lblIngresos;
+    @FXML
+    private Label lblPedidos;
+    @FXML
+    private Label lblUnidades;
+    @FXML
+    private Label lblTicket;
 
-    @FXML private TableView<Pedido> tablaVentas;
-    @FXML private TableColumn<Pedido, String> colPedido;
-    @FXML private TableColumn<Pedido, String> colFecha;
-    @FXML private TableColumn<Pedido, String> colCliente;
-    @FXML private TableColumn<Pedido, Integer> colItems;
-    @FXML private TableColumn<Pedido, Float> colTotal;
-    @FXML private TableColumn<Pedido, String> colMetodoPago;
-    @FXML private TableColumn<Pedido, String> colDireccionEnvio;
+    @FXML
+    private TableView<Pedido> tablaVentas;
+    @FXML
+    private TableColumn<Pedido, String> colPedido;
+    @FXML
+    private TableColumn<Pedido, String> colFecha;
+    @FXML
+    private TableColumn<Pedido, String> colCliente;
+    @FXML
+    private TableColumn<Pedido, Integer> colItems;
+    @FXML
+    private TableColumn<Pedido, Float> colTotal;
+    @FXML
+    private TableColumn<Pedido, String> colMetodoPago;
+    @FXML
+    private TableColumn<Pedido, String> colDireccionEnvio;
 
     private TiendaManager tiendaManager;
 
     @FXML
     public void initialize() {
-        tiendaManager = new TiendaManager();
+        tiendaManager = TiendaManager.getInstancia();
 
         // Configurar las columnas con los atributos de la clase Pedido
         colPedido.setCellValueFactory(new PropertyValueFactory<>("idPedido"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
-        colItems.setCellValueFactory(new PropertyValueFactory<>("cantidadItems")); 
+        colItems.setCellValueFactory(new PropertyValueFactory<>("cantidadItems"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         colMetodoPago.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));
         colDireccionEnvio.setCellValueFactory(new PropertyValueFactory<>("direccionEnvio"));
@@ -69,24 +86,25 @@ public class VentasController {
         double ingresosTotales = 0;
         int unidadesVendidas = 0;
 
-        // Recorrer el historial de pedidos usando la estructura de lista doblemente enlazada
+        // Recorrer el historial de pedidos usando la estructura de lista doblemente
+        // enlazada
         ListaDobleEnlazada<Pedido> historial = tiendaManager.getHistorialPedidos();
         Nodo<Pedido> aux = historial.getCabeza();
-        
+
         while (aux != null) {
             Pedido pedido = aux.getDato();
             listaPedidos.add(pedido);
-            
+
             ingresosTotales += pedido.getTotal();
             if (pedido.getProductos() != null) {
                 unidadesVendidas += pedido.getProductos().size();
             }
-            
+
             aux = aux.getSiguiente();
         }
 
         tablaVentas.setItems(listaPedidos);
-        
+
         int totalPedidos = historial.getTamano();
         lblPedidos.setText(String.valueOf(totalPedidos));
         lblIngresos.setText(String.format("$%.2f", ingresosTotales));

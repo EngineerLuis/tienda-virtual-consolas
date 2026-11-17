@@ -46,7 +46,7 @@ public class CrearCuentaController {
     private final TiendaManager tiendaManager;
 
     public CrearCuentaController() {
-        this.tiendaManager = new TiendaManager();
+        this.tiendaManager = TiendaManager.getInstancia();
     }
 
     @FXML

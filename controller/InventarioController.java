@@ -66,7 +66,7 @@ public class InventarioController {
 
     @FXML
     public void initialize() {
-        tiendaManager = new TiendaManager();
+        tiendaManager = TiendaManager.getInstancia();
 
         // Configurar las columnas de la tabla con los atributos de Producto
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));

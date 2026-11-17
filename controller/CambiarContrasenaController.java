@@ -24,7 +24,7 @@ public class CambiarContrasenaController {
     private final TiendaManager tiendaManager;
 
     public CambiarContrasenaController() {
-        this.tiendaManager = new TiendaManager();
+        this.tiendaManager = TiendaManager.getInstancia();
     }
 
     // Método para recibir el correo desde la ventana anterior

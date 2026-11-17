@@ -76,7 +76,7 @@ public class AgregarProductoController {
 
     @FXML
     public void initialize() {
-        tiendaManager = new TiendaManager();
+        tiendaManager = TiendaManager.getInstancia();
         cmbCategoria.getItems().addAll("Consolas", "Juegos", "Accesorios", "Controles");
     }
 

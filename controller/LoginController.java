@@ -42,7 +42,7 @@ public class LoginController {
     private TiendaManager tiendaManager;
 
     public LoginController() {
-        this.tiendaManager = new TiendaManager();
+        this.tiendaManager = TiendaManager.getInstancia();
     }
 
     @FXML

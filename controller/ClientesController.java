@@ -45,7 +45,7 @@ public class ClientesController {
 
     @FXML
     public void initialize() {
-        tiendaManager = new TiendaManager();
+        tiendaManager = TiendaManager.getInstancia();
 
         // Configurar las columnas con los atributos de la clase Usuario
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
