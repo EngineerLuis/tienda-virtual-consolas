@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarritoController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #161b22; -fx-padding: 12 25 12 25;">
+            <Label text="nexo" textFill="#00d4ff">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            
+            <TextField fx:id="txtBuscar" promptText="Buscar consolas, juegos y accesorios..." prefHeight="36.0" prefWidth="320.0"
+                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12;" />
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Hyperlink fx:id="linkListaDeseos" text="Lista de Deseos" textFill="#c9d1d9" style="-fx-border-color: transparent;" onAction="#onListaDeseos" />
+            <Button fx:id="btnCarrito" text="Carrito" 
+                    style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-border-radius: 6; -fx-background-radius: 6;" />
+            <Button fx:id="btnMiCuenta" text="Mi cuenta" onAction="#onMiCuenta"
+                    style="-fx-background-color: transparent; -fx-text-fill: #c9d1d9; -fx-border-color: #30363d; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" />
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #0d1117; -fx-background: #0d1117;">
+            <HBox spacing="25.0" style="-fx-padding: 30;">
+                
+                <!-- Columna izquierda -->
+                <VBox spacing="18.0" HBox.hgrow="ALWAYS">
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                        <Label text="Tu carrito" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblCantidadItems" text="0 productos" textFill="#8b949e" />
+                    </HBox>
+                    
+                    <Label text="Revisa tus productos antes de continuar." textFill="#8b949e" />
+
+                    <!-- Aquí se cargan los productos dinámicamente -->
+                    <VBox fx:id="contenedorProductos" spacing="12.0">
+                        <!-- Los productos se agregan desde el Controller -->
+                    </VBox>
+
+                    <Hyperlink fx:id="linkSeguirComprando" text="Seguir comprando" textFill="#00d4ff" 
+                               style="-fx-border-color: transparent;" onAction="#onSeguirComprando" />
+
+                    <!-- Dirección de entrega -->
+                    <VBox spacing="12.0" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 20;">
+                        <Label text="Direccion de entrega" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        
+                        <HBox spacing="12.0">
+                            <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                <Label text="Nombre completo" textFill="#c9d1d9" />
+                                <TextField fx:id="txtNombre" prefHeight="38.0"
+                                           style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                            </VBox>
+                            <VBox spacing="6.0" prefWidth="180">
+                                <Label text="Telefono" textFill="#c9d1d9" />
+                                <TextField fx:id="txtTelefono" prefHeight="38.0"
+                                           style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                            </VBox>
+                        </HBox>
+                        
+                        <VBox spacing="6.0">
+                            <Label text="Direccion" textFill="#c9d1d9" />
+                            <TextField fx:id="txtDireccion" prefHeight="38.0"
+                                       style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                        </VBox>
+                    </VBox>
+
+                </VBox>
+
+                <!-- Columna derecha - Resumen -->
+                <VBox spacing="18.0" prefWidth="300">
+                    
+                    <VBox spacing="14.0" style="-fx-background-color: #161b22; -fx-background-radius: 12; -fx-padding: 20;">
+                        <Label text="Resumen del pedido" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        
+                        <HBox>
+                            <Label text="Subtotal" textFill="#8b949e" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblSubtotal" text="\$0.00" textFill="WHITE" />
+                        </HBox>
+                        
+                        <HBox>
+                            <Label text="Envio" textFill="#8b949e" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblEnvio" text="Gratis" textFill="#3fb950" />
+                        </HBox>
+                        
+                        <Separator />
+                        
+                        <HBox>
+                            <Label text="Total" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTotal" text="\$0.00" textFill="#00d4ff">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        
+                        <VBox spacing="6.0">
+                            <Label text="Codigo promocional" textFill="#8b949e" />
+                            <HBox spacing="8.0">
+                                <TextField fx:id="txtCodigo" promptText="Codigo" prefHeight="38.0" HBox.hgrow="ALWAYS"
+                                           style="-fx-background-color: #0d1117; -fx-text-fill: white; -fx-prompt-text-fill: #8b949e; -fx-border-color: #30363d; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                                <Button fx:id="btnAplicar" text="Aplicar" onAction="#onAplicar"
+                                        style="-fx-background-color: #21262d; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" />
+                            </HBox>
+                        </VBox>
+                        
+                        <Label text="Metodo de pago" textFill="#c9d1d9" />
+                        
+                        <VBox spacing="8.0">
+                            <RadioButton fx:id="rbTarjeta" text="Tarjeta de credito / debito" textFill="#c9d1d9" selected="true" />
+                            <RadioButton fx:id="rbTransferencia" text="Transferencia bancaria" textFill="#c9d1d9" />
+                        </VBox>
+                        
+                        <Button fx:id="btnProcederPago" text="Proceder al Pago" maxWidth="Infinity" onAction="#onProcederPago"
+                                style="-fx-background-color: #00d4ff; -fx-text-fill: #0d1117; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 14;" />
+                    </VBox>
+                    
+                </VBox>
+            </HBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
