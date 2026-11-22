@@ -16,6 +16,7 @@ public class Usuario {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.misPedidos = new ArrayList<>();
     }
 
     // Getters and Setters
@@ -45,16 +46,22 @@ public class Usuario {
     }
     
     public void agregarPedido(Pedido pedido) {
+        if (this.misPedidos == null) {
+            this.misPedidos = new ArrayList<>();
+        }
         this.misPedidos.add(pedido);
     }
 
     public List<Pedido> getMisPedidos() {
+        if (this.misPedidos == null) {
+            this.misPedidos = new ArrayList<>();
+        }
         return misPedidos;
     }
 
     public int getCantidadPedidos() {
-    return misPedidos != null ? misPedidos.size() : 0;
-}
+        return misPedidos != null ? misPedidos.size() : 0;
+    }
 
 }
 
