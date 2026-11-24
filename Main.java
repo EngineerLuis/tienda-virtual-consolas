@@ -17,6 +17,7 @@ public class Main extends Application {
             primaryStage.setTitle("Nexo - Videojuegos y Tecnología");
             primaryStage.setScene(new Scene(root, 1100, 700));
             primaryStage.setResizable(false);
+            primaryStage.centerOnScreen();
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="420.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MiCuentaController">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MiCuentaController">
 
-    <VBox alignment="TOP_CENTER" spacing="18.0" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+    <VBox alignment="CENTER" spacing="18.0" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0">
 
         <Label text="Mi Cuenta" textFill="WHITE">
             <font>
