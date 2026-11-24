@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="420.0" style="-fx-background-color: #0d1117;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MiCuentaController">
+
+    <VBox alignment="TOP_CENTER" spacing="18.0" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+
+        <Label text="Mi Cuenta" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <Label text="Elige una opcion" textFill="#8b949e" />
+
+        <VBox spacing="12.0" style="-fx-padding: 10 0 0 0;">
+
+            <Button fx:id="btnInformacion" text="Informacion personal" maxWidth="Infinity" onAction="#onInformacion"
+                    prefHeight="45.0"
+                    style="-fx-background-color: #161b22; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 0 20;" />
+
+            <Button fx:id="btnCarrito" text="Carrito" maxWidth="Infinity" onAction="#onCarrito"
+                    prefHeight="45.0"
+                    style="-fx-background-color: #161b22; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 0 20;" />
+
+            <Button fx:id="btnListaDeseos" text="Lista de deseos" maxWidth="Infinity" onAction="#onListaDeseos"
+                    prefHeight="45.0"
+                    style="-fx-background-color: #161b22; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 0 20;" />
+
+            <Button fx:id="btnMisPedidos" text="Mis pedidos" maxWidth="Infinity" onAction="#onMisPedidos"
+                    prefHeight="45.0"
+                    style="-fx-background-color: #161b22; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 0 20;" />
+
+            <Button fx:id="btnCerrarSesion" text="Cerrar sesion" maxWidth="Infinity" onAction="#onCerrarSesion"
+                    prefHeight="45.0"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #f85149; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 0 20;" />
+
+        </VBox>
+
+        <Hyperlink fx:id="linkVolver" text="Volver" textFill="#8b949e" style="-fx-border-color: transparent;" onAction="#onVolver" />
+
+    </VBox>
+
+</AnchorPane>
